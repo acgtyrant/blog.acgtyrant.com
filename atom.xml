@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Tyrant&#39;s Blog</title>
+  <subtitle>It&#39;s just acgtyrant&#39;s blog... or delusion.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.acgtyrant.com/"/>
+  <updated>2017-01-02T02:41:18.700Z</updated>
+  <id>http://blog.acgtyrant.com/</id>
+  
+  <author>
+    <name>Isaac Ge</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从零开始</title>
+    <link href="http://blog.acgtyrant.com/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B.html"/>
+    <id>http://blog.acgtyrant.com/从零开始.html</id>
+    <published>2017-01-02T02:22:31.000Z</published>
+    <updated>2017-01-02T02:41:18.700Z</updated>
+    
+    <content type="html"><![CDATA[<p>敝博大半年没更新了，引来了很多人的关切。2016 年后半我过得确实挺娱乐致死，荒废了大好时光。趁着新年新气象，我决定重启敝博。</p>
+<p>不过以往原来的 archieves 不会一口气发出来，我会重写一遍，毕竟人总归在成长。</p>
+<p>每周一篇，就先这样吧。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;敝博大半年没更新了，引来了很多人的关切。2016 年后半我过得确实挺娱乐致死，荒废了大好时光。趁着新年新气象，我决定重启敝博。&lt;/p&gt;
+&lt;p&gt;不过以往原来的 archieves 不会一口气发出来，我会重写一遍，毕竟人总归在成长。&lt;/p&gt;
+&lt;p&gt;每周一篇，就先这样吧。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="公告" scheme="http://blog.acgtyrant.com/categories/%E5%85%AC%E5%91%8A/"/>
+    
+    
+  </entry>
+  
+</feed>
