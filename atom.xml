@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.acgtyrant.com/"/>
-  <updated>2017-06-12T14:52:17.573Z</updated>
+  <updated>2017-06-24T05:57:05.863Z</updated>
   <id>http://blog.acgtyrant.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我怎么借钱给朋友</title>
+    <link href="http://blog.acgtyrant.com/%E6%88%91%E6%80%8E%E4%B9%88%E5%80%9F%E9%92%B1%E7%BB%99%E6%9C%8B%E5%8F%8B.html"/>
+    <id>http://blog.acgtyrant.com/我怎么借钱给朋友.html</id>
+    <published>2017-06-24T05:55:19.000Z</published>
+    <updated>2017-06-24T05:57:05.863Z</updated>
+    
+    <content type="html"><![CDATA[<p>一开始问清楚对方想借多少，设为 <code>A</code>; 然后我要想一想，我愿意白送给他多少钱，即有借无还，设为 <code>B</code>. 最后借他 <code>min(A, B)</code> 钱。</p>
+<p>如果是老朋友，不打借条，我会信赖口头承诺；反之则反。</p>
+<p>就我目前的财力来看，<code>B</code> 少得比不上银行贷款，自然也没收什么利息的余地，就算如此，<strong>我愿意免息，这其实已经是友谊的象征了。</strong></p>
+<p>如果对方故意不还钱，我也不会提，毕竟一开始就把借钱金额控制在「我愿意白送他多少」条件下了，自然也不会坏什么心情，于是照常和对方怎么打交道就怎么打交道。但是，若对方依然要借钱且总借款已超过 B 上限，我不会答应，如果对方变本加厉以断交为威胁，那友谊的小船说翻就翻吧，毕竟这从来只是他单方面的个人问题，我的损失也不疼不痒。</p>
+<p>其实，比起我向别人借钱，我更愿意向正规银行借钱，信用卡或银行贷款都是好东西，银行给你评估风险，设置的额度也相应科学，好说；借车也向商业公司租赁，以免发生<a href="https://www.zhihu.com/question/25015924" target="_blank" rel="external">这些狗血破事</a>；重大人身事故直接上社会保险和商业保险而不是到处向亲戚朋友拉众筹。我希望我的朋友们也是这样的聪明人。</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一开始问清楚对方想借多少，设为 &lt;code&gt;A&lt;/code&gt;; 然后我要想一想，我愿意白送给他多少钱，即有借无还，设为 &lt;code&gt;B&lt;/code&gt;. 最后借他 &lt;code&gt;min(A, B)&lt;/code&gt; 钱。&lt;/p&gt;
+&lt;p&gt;如果是老朋友，不打借条，我会信赖口头承诺；反之
+    
+    </summary>
+    
+    
+      <category term="价值观取向" scheme="http://blog.acgtyrant.com/tags/%E4%BB%B7%E5%80%BC%E8%A7%82%E5%8F%96%E5%90%91/"/>
+    
+  </entry>
   
   <entry>
     <title>少鉴定他人，多表达偏好</title>
