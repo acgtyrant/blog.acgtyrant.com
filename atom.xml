@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.acgtyrant.com/"/>
-  <updated>2017-06-26T16:07:13.298Z</updated>
+  <updated>2017-08-29T14:14:40.548Z</updated>
   <id>http://blog.acgtyrant.com/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何跟进深度学习的研究前沿？</title>
+    <link href="http://blog.acgtyrant.com/%E5%A6%82%E4%BD%95%E8%B7%9F%E8%BF%9B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%A0%94%E7%A9%B6%E5%89%8D%E6%B2%BF%EF%BC%9F.html"/>
+    <id>http://blog.acgtyrant.com/如何跟进深度学习的研究前沿？.html</id>
+    <published>2017-08-29T14:11:34.000Z</published>
+    <updated>2017-08-29T14:14:40.548Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><p>一开始没必要就读论文，而是通过 cs231n, deep learning 等教程打好基础。其实由于深度学习这领域刚发展起来，所以 CS213n 给了不少论文的对应关键词，比如 AlexNet, VGGNet, ZFNet, GoogLeNet, ResNet 等等。可以从这相当基本的论文开始读，如果作为本科生且没有接受过学术训练，花一周以上才免强读懂一篇论文也不奇怪，但读多了就越来越快，我现在刚两小时略读完一篇论文，如果是很水的论文大概可能在半小时就全读完。</p>
+<p>如果很难读懂论文，可以先搜搜别人的论文笔记（当然是中文），来源经常包括 CSDN 博客，简书，知乎问答，知乎专栏甚至个人博客等等，我都订阅了它们的 RSS, 其中知乎专栏可以直接用 Inoreader 订阅。</p>
+<h2 id="用-Zotero-管理论文"><a href="#用-Zotero-管理论文" class="headerlink" title="用 Zotero 管理论文"></a>用 Zotero 管理论文</h2><p>我用 Zotero 管理论文，它有三个优势：可以通过浏览器插件在相关网页上（比如 arXiv, Google Scorlar, Microsoft Research 等等）一键收录论文到 Zotero; 可以在论文条目下写笔记；论文分类、归档、排序十分方便。怎么用 Zotero 管理网上满是教程，我就不赘述了，我只给大家看看我的分类树以及时间排序界面：</p>
+<p><a href="zotero.png">Zotero 界面</a></p>
+<p>于是读的论文可以按时间和重要性排序递增，顺便一提，分类树随时要修改以符合你当前心中的最佳分类，比如我以前把 AlexNet, VGGNet, ZFNet, GoogLeNet, ResNet 等都是放到「年度论文」的，但现在我把它们改移到「网络结构」里了，同时该分类还有 Network in Network, Highway Networks 等等；此外我曾经有个分类「奇技淫巧」，旗下又有「训练算法」，「防过拟合」，「权重初始化」和「激活函数」等等，但我最近嫌分类太散乱，于是又花了点时间苦思冥想，终于想出更合适的分类「优化理论」，我便取消「奇技淫巧」这分类，把大部分论文都归档到这新分类。</p>
+<h2 id="收集论文、开始跟进研究前沿"><a href="#收集论文、开始跟进研究前沿" class="headerlink" title="收集论文、开始跟进研究前沿"></a>收集论文、开始跟进研究前沿</h2><p>读论文多了，你就会越来越熟悉你所从事领域的学术大牛，比如物体检测的 Ross Girshick, 语义识别的 Jifeng Dai, 对抗学习的 Goodfellow 等等。这时可以直接在 Google Scholar 的学术用户页面上关注他们的新文章，这样可以在第一时间收到他们发表论文的最新动态。</p>
+<p>在知乎上也可以关注顶级会议、学术竞赛的相关问题，比如 <a href="https://www.zhihu.com/question/57523080" target="_blank" rel="external">CVPR 2017 有什么值得关注的亮点?</a> 和 <a href="https://www.zhihu.com/question/51024166" target="_blank" rel="external">如何评价ILSVRC2016的比赛结果？</a> 上面会有别人帮你总结好的答案，直接按图索骥即可。</p>
+<p>也可以直接去学术竞赛看天梯排名，看看当前战斗力最强的模型对应的论文是啥，扒下来读，比如 <a href="http://host.robots.ox.ac.uk:8080/leaderboard/displaylb.php?challengeid=11&amp;compid=6" target="_blank" rel="external">PASCAL VOC 2012 Segmentation Competition</a> 当前的首席 <a href="https://arxiv.org/abs/1706.05587" target="_blank" rel="external">DeepLabv3</a> 和第五席 <a href="https://arxiv.org/abs/1612.01105" target="_blank" rel="external">PSPNet</a>.</p>
+<p>如果打算专心用 PyTorch 做研究，可以<a href="https://stackoverflow.com/questions/7353538/setting-up-an-github-commit-rss-feed" target="_blank" rel="external">订阅</a> awesome-pytorch 的 <a href="https://github.com/rickiepark/awesome-pytorch/commits/master.atom" target="_blank" rel="external">RSS</a>, 对其他 GitHub 上的<a href="https://github.com/jtoy/awesome-tensorflow" target="_blank" rel="external">类似 awesome 项目</a>也可如法炮制。</p>
+<p>最后，若有人能带你就更好，比如导师会收集论文并传给学生，据我所知商汤他们每周有论文分享会，以跟进论文最新前沿。</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;起步&quot;&gt;&lt;a href=&quot;#起步&quot; class=&quot;headerlink&quot; title=&quot;起步&quot;&gt;&lt;/a&gt;起步&lt;/h2&gt;&lt;p&gt;一开始没必要就读论文，而是通过 cs231n, deep learning 等教程打好基础。其实由于深度学习这领域刚发展起来，所以 CS21
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="深度学习" scheme="http://blog.acgtyrant.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>如何打分</title>
