@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>我怎么借钱给朋友 | Tyrant&#39;s Blog</title>
+  <title>如何跟进深度学习的研究前沿？ | Tyrant&#39;s Blog</title>
   <meta name="author" content="Isaac Ge">
   
   <meta name="description" content="It&#39;s just acgtyrant&#39;s blog... or delusion.">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="我怎么借钱给朋友"/>
+  <meta property="og:title" content="如何跟进深度学习的研究前沿？"/>
   <meta property="og:site_name" content="Tyrant&#39;s Blog"/>
 
   
@@ -81,7 +81,7 @@
 
 	
 		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> 我怎么借钱给朋友</h1>
+			<h1 class="title title-inverse "> 如何跟进深度学习的研究前沿？</h1>
 		</div>		
 	
 
@@ -101,11 +101,16 @@
 	<div class="mypage">		
 	  		
 
-	  <p>一开始问清楚对方想借多少，设为 <code>A</code>; 然后我要想一想，我愿意白送给他多少钱，即有借无还，设为 <code>B</code>. 最后借他 <code>min(A, B)</code> 钱。</p>
-<p>如果是老朋友，不打借条，我会信赖口头承诺；反之则反。</p>
-<p>就我目前的财力来看，<code>B</code> 少得比不上银行贷款，自然也没收什么利息的余地，就算如此，<strong>我愿意免息，这其实已经是友谊的象征了。</strong></p>
-<p>如果对方故意不还钱，我也不会提，毕竟一开始就把借钱金额控制在「我愿意白送他多少」条件下了，自然也不会坏什么心情，于是照常和对方怎么打交道就怎么打交道。但是，若对方依然要借钱且总借款已超过 B 上限，我不会答应，如果对方变本加厉以断交为威胁，那友谊的小船说翻就翻吧，毕竟这从来只是他单方面的个人问题，我的损失也不疼不痒。</p>
-<p>其实，比起我向别人借钱，我更愿意向正规银行借钱，信用卡或银行贷款都是好东西，银行给你评估风险，设置的额度也相应科学，好说；借车也向商业公司租赁，以免发生<a href="https://www.zhihu.com/question/25015924" target="_blank" rel="external">这些狗血破事</a>；重大人身事故直接上社会保险和商业保险而不是到处向亲戚朋友拉众筹。我希望我的朋友们也是这样的聪明人。</p>
+	  <h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><p>一开始没必要就读论文，而是通过 cs231n, deep learning 等教程打好基础。其实由于深度学习这领域刚发展起来，所以 CS213n 给了不少论文的对应关键词，比如 AlexNet, VGGNet, ZFNet, GoogLeNet, ResNet 等等。可以从这相当基本的论文开始读，如果作为本科生且没有接受过学术训练，花一周以上才免强读懂一篇论文也不奇怪，但读多了就越来越快，我现在刚两小时略读完一篇论文，如果是很水的论文大概可能在半小时就全读完。</p>
+<p>如果很难读懂论文，可以先搜搜别人的论文笔记（当然是中文），来源经常包括 CSDN 博客，简书，知乎问答，知乎专栏甚至个人博客等等，我都订阅了它们的 RSS, 其中知乎专栏可以直接用 Inoreader 订阅。</p>
+<h2 id="用-Zotero-管理论文"><a href="#用-Zotero-管理论文" class="headerlink" title="用 Zotero 管理论文"></a>用 Zotero 管理论文</h2><p>我用 Zotero 管理论文，它有三个优势：可以通过浏览器插件在相关网页上（比如 arXiv, Google Scorlar, Microsoft Research 等等）一键收录论文到 Zotero; 可以在论文条目下写笔记；论文分类、归档、排序十分方便。怎么用 Zotero 管理网上满是教程，我就不赘述了，我只给大家看看我的分类树以及时间排序界面：</p>
+<p><a href="images/zotero.png">Zotero 界面</a></p>
+<p>于是读的论文可以按时间和重要性排序递增，顺便一提，分类树随时要修改以符合你当前心中的最佳分类，比如我以前把 AlexNet, VGGNet, ZFNet, GoogLeNet, ResNet 等都是放到「年度论文」的，但现在我把它们改移到「网络结构」里了，同时该分类还有 Network in Network, Highway Networks 等等；此外我曾经有个分类「奇技淫巧」，旗下又有「训练算法」，「防过拟合」，「权重初始化」和「激活函数」等等，但我最近嫌分类太散乱，于是又花了点时间苦思冥想，终于想出更合适的分类「优化理论」，我便取消「奇技淫巧」这分类，把大部分论文都归档到这新分类。</p>
+<h2 id="收集论文、开始跟进研究前沿"><a href="#收集论文、开始跟进研究前沿" class="headerlink" title="收集论文、开始跟进研究前沿"></a>收集论文、开始跟进研究前沿</h2><p>读论文多了，你就会越来越熟悉你所从事领域的学术大牛，比如物体检测的 Ross Girshick, 语义识别的 Jifeng Dai, 对抗学习的 Goodfellow 等等。这时可以直接在 Google Scholar 的学术用户页面上关注他们的新文章，这样可以在第一时间收到他们发表论文的最新动态。</p>
+<p>在知乎上也可以关注顶级会议、学术竞赛的相关问题，比如 <a href="https://www.zhihu.com/question/57523080" target="_blank" rel="external">CVPR 2017 有什么值得关注的亮点?</a> 和 <a href="https://www.zhihu.com/question/51024166" target="_blank" rel="external">如何评价ILSVRC2016的比赛结果？</a> 上面会有别人帮你总结好的答案，直接按图索骥即可。</p>
+<p>也可以直接去学术竞赛看天梯排名，看看当前战斗力最强的模型对应的论文是啥，扒下来读，比如 <a href="http://host.robots.ox.ac.uk:8080/leaderboard/displaylb.php?challengeid=11&amp;compid=6" target="_blank" rel="external">PASCAL VOC 2012 Segmentation Competition</a> 当前的首席 <a href="https://arxiv.org/abs/1706.05587" target="_blank" rel="external">DeepLabv3</a> 和第五席 <a href="https://arxiv.org/abs/1612.01105" target="_blank" rel="external">PSPNet</a>.</p>
+<p>如果打算专心用 PyTorch 做研究，可以<a href="https://stackoverflow.com/questions/7353538/setting-up-an-github-commit-rss-feed" target="_blank" rel="external">订阅</a> awesome-pytorch 的 <a href="https://github.com/rickiepark/awesome-pytorch/commits/master.atom" target="_blank" rel="external">RSS</a>, 对其他 GitHub 上的<a href="https://github.com/jtoy/awesome-tensorflow" target="_blank" rel="external">类似 awesome 项目</a>也可如法炮制。</p>
+<p>最后，若有人能带你就更好，比如导师会收集论文并传给学生，据我所知商汤他们每周有论文分享会，以跟进论文最新前沿。</p>
 <blockquote>
 <p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
 </blockquote>
@@ -117,14 +122,14 @@
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/如何打分.html" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/少鉴定他人，多表达偏好.html" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/如何打分.html" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -163,7 +168,7 @@
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2017 Jun 24 
+	2017 Aug 29 
 	</div>
 	
 
@@ -176,7 +181,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/价值观取向/">价值观取向<span>8</span></a></li>
+  <li><a href="/tags/技术/">技术<span>1</span></a></li> <li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
     </ul>
 	</div>
 		
