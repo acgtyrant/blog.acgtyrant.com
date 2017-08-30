@@ -4,6 +4,18 @@
   
     
     <entry>
+      <title><![CDATA[C++ 怎么念]]></title>
+      <url>http://blog.acgtyrant.com/C-%E6%80%8E%E4%B9%88%E5%BF%B5.html</url>
+      <content type="html"><![CDATA[<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr">北大教授把 C++ 称为Ｃ加加，我就呵呵了。</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/649186235672567808" target="_blank" rel="external">2015年9月30日</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>我有听力障碍，于是就算三次元里周围有人谈及 C++ 且把它读成「Ｃ加加」，我也不怎么有印象。倒是长期以来受英文资料薰陶，英文上的 C++ 便先入为主了，毕竟 + 在英文里就是 “plus”. 于是我凡看到这词时，脑海就默默地响起 “C plus plus”, 也难怪我在上北京大学的公开课时，不由得呵呵一笑。不过推上大多数人不以为然，有的猜读为 “C double plus”, 有的搞怪成「C艹」，有的恶俗地叫「C屁屁」。</p>
+<p>其实 C++ 到底读成什么并不重要，就看你和谁打交道了。如果就只局限于品读谭浩强大师著作、不会上 StackOverflow、天天百度 C++98/03 文档、从来没去过官网 isocpp.org、靠 Visual C++ 6 开发的小圈子里，大家约定俗成地一起读成Ｃ加加，也挺好；如果你向来满口污言秽语，「Ｃ艹」很适合你；如果你想和 Bjarne Stroustrup 之风流谈笑风生，小心点别念错 cplusplus 是了。</p>
+<p>其实查 C++, C#, TeX 之类的英文读法也不难：去英文维基百科看条目即可，一般开头就有音标，C++ 念 /siː plʌs plʌs/.</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[如何跟进深度学习的研究前沿？]]></title>
       <url>http://blog.acgtyrant.com/%E5%A6%82%E4%BD%95%E8%B7%9F%E8%BF%9B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%A0%94%E7%A9%B6%E5%89%8D%E6%B2%BF%EF%BC%9F.html</url>
       <content type="html"><![CDATA[<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><p>一开始没必要就读论文，而是通过 cs231n, deep learning 等教程打好基础。其实由于深度学习这领域刚发展起来，所以 CS213n 给了不少论文的对应关键词，比如 AlexNet, VGGNet, ZFNet, GoogLeNet, ResNet 等等。可以从这相当基本的论文开始读，如果作为本科生且没有接受过学术训练，花一周以上才免强读懂一篇论文也不奇怪，但读多了就越来越快，我现在刚两小时略读完一篇论文，如果是很水的论文大概可能在半小时就全读完。</p>

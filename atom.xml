@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.acgtyrant.com/"/>
-  <updated>2017-08-29T14:35:35.409Z</updated>
+  <updated>2017-08-30T15:15:06.041Z</updated>
   <id>http://blog.acgtyrant.com/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++ 怎么念</title>
+    <link href="http://blog.acgtyrant.com/C-%E6%80%8E%E4%B9%88%E5%BF%B5.html"/>
+    <id>http://blog.acgtyrant.com/C-怎么念.html</id>
+    <published>2017-08-30T15:12:51.000Z</published>
+    <updated>2017-08-30T15:15:06.041Z</updated>
+    
+    <content type="html"><![CDATA[<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr">北大教授把 C++ 称为Ｃ加加，我就呵呵了。</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/649186235672567808" target="_blank" rel="external">2015年9月30日</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>我有听力障碍，于是就算三次元里周围有人谈及 C++ 且把它读成「Ｃ加加」，我也不怎么有印象。倒是长期以来受英文资料薰陶，英文上的 C++ 便先入为主了，毕竟 + 在英文里就是 “plus”. 于是我凡看到这词时，脑海就默默地响起 “C plus plus”, 也难怪我在上北京大学的公开课时，不由得呵呵一笑。不过推上大多数人不以为然，有的猜读为 “C double plus”, 有的搞怪成「C艹」，有的恶俗地叫「C屁屁」。</p>
+<p>其实 C++ 到底读成什么并不重要，就看你和谁打交道了。如果就只局限于品读谭浩强大师著作、不会上 StackOverflow、天天百度 C++98/03 文档、从来没去过官网 isocpp.org、靠 Visual C++ 6 开发的小圈子里，大家约定俗成地一起读成Ｃ加加，也挺好；如果你向来满口污言秽语，「Ｃ艹」很适合你；如果你想和 Bjarne Stroustrup 之风流谈笑风生，小心点别念错 cplusplus 是了。</p>
+<p>其实查 C++, C#, TeX 之类的英文读法也不难：去英文维基百科看条目即可，一般开头就有音标，C++ 念 /siː plʌs plʌs/.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;zh-cn&quot;&gt;&lt;p lang=&quot;zh&quot; dir=&quot;ltr&quot;&gt;北大教授把 C++ 称为Ｃ加加，我就呵呵了。&lt;/p&gt;&amp;mdash; 御宅暴君 (@acgtyrant) &lt;a href=&quot;h
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="C++" scheme="http://blog.acgtyrant.com/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>如何跟进深度学习的研究前沿？</title>
