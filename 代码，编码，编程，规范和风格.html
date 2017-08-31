@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>C++ 怎么念 | Tyrant&#39;s Blog</title>
+  <title>代码，编码，编程，规范和风格 | Tyrant&#39;s Blog</title>
   <meta name="author" content="Isaac Ge">
   
   <meta name="description" content="It&#39;s just acgtyrant&#39;s blog... or delusion.">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="C++ 怎么念"/>
+  <meta property="og:title" content="代码，编码，编程，规范和风格"/>
   <meta property="og:site_name" content="Tyrant&#39;s Blog"/>
 
   
@@ -81,7 +81,7 @@
 
 	
 		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> C++ 怎么念</h1>
+			<h1 class="title title-inverse "> 代码，编码，编程，规范和风格</h1>
 		</div>		
 	
 
@@ -101,12 +101,12 @@
 	<div class="mypage">		
 	  		
 
-	  <p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr">北大教授把 C++ 称为Ｃ加加，我就呵呵了。</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/649186235672567808" target="_blank" rel="external">2015年9月30日</a></blockquote></p>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p>我有听力障碍，于是就算三次元里周围有人谈及 C++ 且把它读成「Ｃ加加」，我也不怎么有印象。倒是长期以来受英文资料薰陶，英文上的 C++ 便先入为主了，毕竟 + 在英文里就是 “plus”. 于是我凡看到这词时，脑海就默默地响起 “C plus plus”, 也难怪我在上北京大学的公开课时，不由得呵呵一笑。不过推上大多数人不以为然，有的猜读为 “C double plus”, 有的搞怪成「C艹」，有的恶俗地叫「C屁屁」。</p>
-<p>其实 C++ 到底读成什么并不重要，就看你和谁打交道了。如果就只局限于品读谭浩强大师著作、不会上 StackOverflow、天天百度 C++98/03 文档、从来没去过官网 isocpp.org、靠 Visual C++ 6 开发的小圈子里，大家约定俗成地一起读成Ｃ加加，也挺好；如果你向来满口污言秽语，「Ｃ艹」很适合你；如果你想和 Bjarne Stroustrup 之风流谈笑风生，小心点别念错 cplusplus 是了。</p>
-<p>其实查 C++, C#, TeX 之类的英文读法也不难：去英文维基百科看条目即可，一般开头就有音标，C++ 念 /siː plʌs plʌs/.</p>
+	  <p>我最近下定决心不再拖延博客的更新，但也懒得重启独立的技术博客，于是以后技术博文就在这里发表。</p>
+<p>计算机科学基础老生常谈，编程语言也是如此。我没兴趣当 language lawyer, 就讲讲颇为人文的<strong>编程规范</strong>吧。</p>
+<p>大家过去应该也看到过不少类似的关键词：代码风格、编码风格、编程风格和编程规范等等。光一家著名的 Google Coding Guide Style 的民间翻译就囊括了以上用词。最初，李开复先生称它为「编码规范」，且我以前翻译 Google C++ Guide Style 时，没仔细琢磨好翻译用词，就同时用到了「风格」，「编码」，「编程」等等，不一致啊。</p>
+<p>咬文嚼字了一会，先从「代码」、「编码」、「编程」汰劣存优开始吧。「代码」只是一个名词，不如动词来得亲切；「<a href="http://www.zdic.net/c/6/f/23119.htm" target="_blank" rel="external">编码</a>」即是表示<strong>一系列机器级别指令</strong>的名词，又是表示<strong>手动转换机器码与汇编码</strong>的动词；然而人类死跟机器码较劲的时代已经结束了，现在是高级编程语言的天下了，我们不想拘泥于表面的「编码」，而只关心足够抽象的 Program, 即程序，所以现在看来「编程」是最理想的翻译用词。</p>
+<p>至于「风格」与「规范」又如何呢？我倾向于 <a href="http://www.andreasboye.com/2013/05/the-conventions-we-follow.html" target="_blank" rel="external">The conventions we follow</a> 对此的分析：「风格」只讲究代码的格式化形式，比如缩进啊空白啊注释形式啊，然而「规范」涉及的更为广泛，即同时包括了编程风格和其它规范，就像该不该用某语言特性，用什么编译工具链，甚至如何版本控制等等。</p>
+<p>编程可谓一门艺术，又是一项工程。若要运用得炉火纯青，可不能光划个风格就了事，还要相当洞悉所用编程语言的特性，以及开发环境的理想部署等等，这时「规范」就很重要了。从此以后，我将不时地探讨种种编程规范。</p>
 	  
 	</div>
 
@@ -115,14 +115,14 @@
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/代码，编码，编程，规范和风格.html" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/如何跟进深度学习的研究前沿？.html" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/C-怎么念.html" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -161,7 +161,7 @@
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2017 Aug 30 
+	2017 Aug 31 
 	</div>
 	
 
@@ -174,7 +174,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/技术/">技术<span>3</span></a></li> <li><a href="/tags/C/">C++<span>1</span></a></li>
+  <li><a href="/tags/技术/">技术<span>3</span></a></li> <li><a href="/tags/编程规范/">编程规范<span>1</span></a></li>
     </ul>
 	</div>
 		
