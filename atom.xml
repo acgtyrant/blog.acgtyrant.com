@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.acgtyrant.com/"/>
-  <updated>2017-08-31T13:25:19.228Z</updated>
+  <updated>2017-09-02T03:53:17.660Z</updated>
   <id>http://blog.acgtyrant.com/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>using 指示命名空间习惯不好</title>
+    <link href="http://blog.acgtyrant.com/using-%E6%8C%87%E7%A4%BA%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E4%B9%A0%E6%83%AF%E4%B8%8D%E5%A5%BD.html"/>
+    <id>http://blog.acgtyrant.com/using-指示命名空间习惯不好.html</id>
+    <published>2017-09-02T03:50:24.000Z</published>
+    <updated>2017-09-02T03:53:17.660Z</updated>
+    
+    <content type="html"><![CDATA[<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr">C++ 新手最常见的错误：<br><br>using namespace std;</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/644719997206458368" target="_blank" rel="external">2015年9月18日</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr"><a href="https://twitter.com/librehat" target="_blank" rel="external">@librehat</a> 污染了全局作用域上的命名空间。</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/644781322360098816" target="_blank" rel="external">2015年9月18日</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr"><a href="https://twitter.com/librehat" target="_blank" rel="external">@librehat</a> std 里面的命名特别多；如果一个 cpp 文件 using 指示了某命名空间，为了一致性，别的 cpp 文件也得 using 指示同一个命名空间，长远来看是灾难；从有限的上下文无法判断某命名是不是标准库或别的命名空间里面的，比如 diff 输出。</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/644801502163243008" target="_blank" rel="external">2015年9月18日</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>如果不禁止 using 指示，那么你在多人项目里，如何判断同一个标识符在由不同工程师编写的源代码里，是否为同一个东西？</p>
+<p>如果大家保持一致性，即某些命名空间都要 using 指示出来，别的不 using 指示。然而，又如何规定哪些要指示哪些不用指示？害得大家束手束脚地保持一致，规定也众口难调地麻烦；对个人项目也是一样的道理，如果开发者随心所欲地在这里不 using 指示 std, 却又在那边 using 指示它，从长远来看维护将是灾难。</p>
+<p>最后，你能保证将来永远不会取消对某命名空间的 using 指示吗？否则你得给这被 using 指示的命名空间里所有用到的标识符一一加上命名空间作用域前缀，你想象一下怎么弄吧，你有办法自动化处理且绝不出错吗？</p>
+<p>对我来说，与其大费周章地划出可以被 using 指示的命名空间，还不如一劳永逸地用奥卡姆柴刀砍掉 using 指示用法，也省了我在 tweets 里列举的种种缺点。</p>
+<p>我写 C++ 时，爱把迭代器对象直接声明为 iterator 并拿来用，也很清楚 vector 是一个「向量」对象或别的什么，反正不会是 std::vector 那种容器，我放心我舒服。你呢？</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;zh-cn&quot;&gt;&lt;p lang=&quot;zh&quot; dir=&quot;ltr&quot;&gt;C++ 新手最常见的错误：&lt;br&gt;&lt;br&gt;using namespace std;&lt;/p&gt;&amp;mdash; 御宅暴君 (@ac
+    
+    </summary>
+    
+    
+      <category term="编程规范" scheme="http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
+    
+      <category term="C++" scheme="http://blog.acgtyrant.com/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>代码，编码，编程，规范和风格</title>
@@ -39,9 +75,9 @@
     </summary>
     
     
-      <category term="技术" scheme="http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/"/>
-    
       <category term="编程规范" scheme="http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
+    
+      <category term="技术" scheme="http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
@@ -67,9 +103,9 @@
     </summary>
     
     
-      <category term="技术" scheme="http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/"/>
-    
       <category term="C++" scheme="http://blog.acgtyrant.com/tags/C/"/>
+    
+      <category term="技术" scheme="http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
