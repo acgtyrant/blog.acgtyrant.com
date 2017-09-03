@@ -30,22 +30,29 @@
     </url>
 
     <url>
+        <loc>http://blog.acgtyrant.com/tags/C/</loc>
+        <lastmod>2017-09-02T03:53:17.660Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/</loc>
-        <lastmod>2017-08-31T13:25:19.228Z</lastmod>
+        <lastmod>2017-09-03T04:02:59.187Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.acgtyrant.com/tags/Python/</loc>
+        <lastmod>2017-09-03T04:02:59.187Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/</loc>
-        <lastmod>2017-09-02T03:53:17.660Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://blog.acgtyrant.com/tags/C/</loc>
-        <lastmod>2017-09-02T03:53:17.660Z</lastmod>
+        <lastmod>2017-09-03T04:02:59.187Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

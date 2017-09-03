@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>代码，编码，编程，规范和风格 | Tyrant&#39;s Blog</title>
+  <title>什么情况下 map 比 list comprehension 好？ | Tyrant&#39;s Blog</title>
   <meta name="author" content="Isaac Ge">
   
   <meta name="description" content="It&#39;s just acgtyrant&#39;s blog... or delusion.">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="代码，编码，编程，规范和风格"/>
+  <meta property="og:title" content="什么情况下 map 比 list comprehension 好？"/>
   <meta property="og:site_name" content="Tyrant&#39;s Blog"/>
 
   
@@ -81,7 +81,7 @@
 
 	
 		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> 代码，编码，编程，规范和风格</h1>
+			<h1 class="title title-inverse "> 什么情况下 map 比 list comprehension 好？</h1>
 		</div>		
 	
 
@@ -101,12 +101,15 @@
 	<div class="mypage">		
 	  		
 
-	  <p>我最近下定决心不再拖延博客的更新，但也懒得重启独立的技术博客，于是以后技术博文就在这里发表。</p>
-<p>计算机科学基础老生常谈，编程语言也是如此。我没兴趣当 language lawyer, 就讲讲颇为人文的<strong>编程规范</strong>吧。</p>
-<p>大家过去应该也看到过不少类似的关键词：代码风格、编码风格、编程风格和编程规范等等。光一家著名的 Google Coding Guide Style 的民间翻译就囊括了以上用词。最初，李开复先生称它为「编码规范」，且我以前翻译 Google C++ Guide Style 时，没仔细琢磨好翻译用词，就同时用到了「风格」，「编码」，「编程」等等，不一致啊。</p>
-<p>咬文嚼字了一会，先从「代码」、「编码」、「编程」汰劣存优开始吧。「代码」只是一个名词，不如动词来得亲切；「<a href="http://www.zdic.net/c/6/f/23119.htm" target="_blank" rel="external">编码</a>」即是表示<strong>一系列机器级别指令</strong>的名词，又是表示<strong>手动转换机器码与汇编码</strong>的动词；然而人类死跟机器码较劲的时代已经结束了，现在是高级编程语言的天下了，我们不想拘泥于表面的「编码」，而只关心足够抽象的 Program, 即程序，所以现在看来「编程」是最理想的翻译用词。</p>
-<p>至于「风格」与「规范」又如何呢？我倾向于 <a href="http://www.andreasboye.com/2013/05/the-conventions-we-follow.html" target="_blank" rel="external">The conventions we follow</a> 对此的分析：「风格」只讲究代码的格式化形式，比如缩进啊空白啊注释形式啊，然而「规范」涉及的更为广泛，即同时包括了编程风格和其它规范，就像该不该用某语言特性，用什么编译工具链，甚至如何版本控制等等。</p>
-<p>编程可谓一门艺术，又是一项工程。若要运用得炉火纯青，可不能光划个风格就了事，还要相当洞悉所用编程语言的特性，以及开发环境的理想部署等等，这时「规范」就很重要了。从此以后，我将不时地探讨种种编程规范。</p>
+	  <p>事实上，<a href="https://stackoverflow.com/questions/1247486/python-list-comprehension-vs-map/1247490#1247490" target="_blank" rel="external">list comprehension 公认效率比 map 好</a>，<strong>所以当 map 比 list comprehension 可读性好且不在乎性能时，可以优先用前者。</strong></p>
+<p>那问题又来了：什么时候 map 的可读性比较好？<strong>当且只当低阶函数是你所熟悉的 Python 函数，便利的 sequence 对象也够一目了然时。</strong>比如我就经常用它转换命令列表，够一气呵成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">traincascade_command = [</div><div class="line">    command_pathname,</div><div class="line">    &apos;-w&apos;, weight,</div><div class="line">    &apos;-h&apos;, height,</div><div class="line">    &apos;vec&apos;, vec_pathname,</div><div class="line">]</div><div class="line">traincascade_command = map(str, traincascade_command)</div><div class="line">subprocess.call(traincascade_command)</div></pre></td></tr></table></figure>
+<p>妈妈再也不用担心我不小心传 int, pathlib.Path 进命令列表了，写的 list comprehension 又长又臭得超出 79 个字符了。同理，rects = map(int, rect_strs) , positives = map(abs, integers) 之类的精炼表达式也可以。</p>
+<p>因为你很清楚 str, int 和 abs 等是一元函数，作用是什么；反之，即用你所不熟悉的 Python 函数，比如 a = map(b, c), 这时你往往会产生四重疑惑：</p>
+<p>其一，<strong>b 是一个 callable 对象吗？</strong><br>其二，<strong>b 可以只接受一个形参吗，即它到底是不是一元函数？</strong><br>其三，<strong>c 是否为 sequence 对象？</strong><br>其四，<strong>c 的 iterable 元素又是什么鬼？</strong></p>
+<p>更别说用雪上加霜的 lambda 了。</p>
+<p>但换用 list comprehension 就没这问题：a = [b(d) for d in c], 显然 b(d) 表达了 b 彻彻底底是个一元函数，且 c 作为 sequence 对象时 iterable 元素是 d, 最终 a 会被 bind 到一个 list 对象。可读性更胜一筹。</p>
+<p>举一反三，你可以琢磨什么情况下 filter, funtools.reduce 等也能如法炮制。</p>
 	  
 	</div>
 
@@ -115,14 +118,14 @@
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/using-指示命名空间习惯不好.html" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Anterior</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Anterior</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/C-怎么念.html" class="alignright next">Próximo<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/using-指示命名空间习惯不好.html" class="alignright next">Próximo<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -161,7 +164,7 @@
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2017 Aug 31 
+	2017 Sep 3 
 	</div>
 	
 
@@ -174,7 +177,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/技术/">技术<span>4</span></a></li> <li><a href="/tags/编程规范/">编程规范<span>3</span></a></li>
+  <li><a href="/tags/技术/">技术<span>4</span></a></li> <li><a href="/tags/Python/">Python<span>1</span></a></li> <li><a href="/tags/编程规范/">编程规范<span>3</span></a></li>
     </ul>
 	</div>
 		
