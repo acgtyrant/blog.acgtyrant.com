@@ -9,11 +9,11 @@
       <content type="html"><![CDATA[<p>事实上，<a href="https://stackoverflow.com/questions/1247486/python-list-comprehension-vs-map/1247490#1247490" target="_blank" rel="external">list comprehension 公认效率比 map 好</a>，<strong>所以当 map 比 list comprehension 可读性好且不在乎性能时，可以优先用前者。</strong></p>
 <p>那问题又来了：什么时候 map 的可读性比较好？<strong>当且只当低阶函数是你所熟悉的 Python 函数，便利的 sequence 对象也够一目了然时。</strong>比如我就经常用它转换命令列表，够一气呵成：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">traincascade_command = [</div><div class="line">    command_pathname,</div><div class="line">    &apos;-w&apos;, weight,</div><div class="line">    &apos;-h&apos;, height,</div><div class="line">    &apos;vec&apos;, vec_pathname,</div><div class="line">]</div><div class="line">traincascade_command = map(str, traincascade_command)</div><div class="line">subprocess.call(traincascade_command)</div></pre></td></tr></table></figure>
-<p>妈妈再也不用担心我不小心传 int, pathlib.Path 进命令列表了，写的 list comprehension 又长又臭得超出 79 个字符了。同理，rects = map(int, rect_strs) , positives = map(abs, integers) 之类的精炼表达式也可以。</p>
+<p>妈妈再也不用担心我不小心传 int, pathlib.Path 进命令列表了，写的 list comprehension 又长又臭得超出 79 个字符了。同理，<code>rects = map(int, rect_strs)</code>, <code>positives = map(abs, integers)</code> 之类的精炼表达式也可以。</p>
 <p>因为你很清楚 str, int 和 abs 等是一元函数，作用是什么；反之，即用你所不熟悉的 Python 函数，比如 a = map(b, c), 这时你往往会产生四重疑惑：</p>
 <p>其一，<strong>b 是一个 callable 对象吗？</strong><br>其二，<strong>b 可以只接受一个形参吗，即它到底是不是一元函数？</strong><br>其三，<strong>c 是否为 sequence 对象？</strong><br>其四，<strong>c 的 iterable 元素又是什么鬼？</strong></p>
 <p>更别说用雪上加霜的 lambda 了。</p>
-<p>但换用 list comprehension 就没这问题：a = [b(d) for d in c], 显然 b(d) 表达了 b 彻彻底底是个一元函数，且 c 作为 sequence 对象时 iterable 元素是 d, 最终 a 会被 bind 到一个 list 对象。可读性更胜一筹。</p>
+<p>但换用 list comprehension 就没这问题：<code>a = [b(d) for d in c]</code>, 显然 b(d) 表达了 b 彻彻底底是个一元函数，且 c 作为 sequence 对象时 iterable 元素是 d, 最终 a 会被 bind 到一个 list 对象。可读性更胜一筹。</p>
 <p>举一反三，你可以琢磨什么情况下 filter, funtools.reduce 等也能如法炮制。</p>
 ]]></content>
     </entry>
