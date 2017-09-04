@@ -125,9 +125,42 @@
 		
             
 		
+            
+		
         
         <!-- render other articles -->
         
+           
+			  
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017 Sep 4 </div>
+			<div class="article-title"><a href="/单位元对编程的启发.html" >单位元对编程的启发</a></div>						
+		</h3>
+	
+
+
+			  <div class="entry">
+  <div class="row">
+	
+	
+		<p>最近，我在处理一个文本文件，它有三列，分别为文件名，数字，字符串，且其中第一列中有若干重复了的部分，于是我需要把这些重复的行合并起来，即第二列合并为总和，第三列合并为一条新字符串，且用空格分隔。</p>
+<p>我一开始想如此合并：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sum = 0</div><div class="line">string = &apos;&apos;</div><div class="line">for duplicate_line in duplicate_lines:</div><div class="line">    sum += int(duplicate_line.split()[1])</div><div class="line">    string = &apos; &apos;.join(string,  duplicate_line.split()[2])</div></pre></td></tr></table></figure>
+<p>但迭代完后 string 并不符合我的期望，它包含了一个 heading space! 这令我想起了抽象代数学上的「单位元」，即<strong>它在某二元运算中，与任意元素运算后，结果的值恒为后者本身。</strong>比如加法中的 0 与任何数字相加，恒返回后者的原值；乘法中的 1 也同理。</p>
+<p>于是我们可以说，把 ‘ ‘.join() 当二元运算符来看时，<strong>不存在单位元</strong>，即 ‘ ‘.join([a, b]) 中 b 为任意字符串时，不存在 a 变量能使这函数返回 b 本身，哪怕变量 a 为空字符串时，也会返回包含了一个 heading space 和 b 值的新字符串！就像我上面的代码一样。不过 ‘’.join() 当然就有单位元即空字符串。</p>
+<p>反观 Python 的 int 加法，它就有单位元，即 sum 的初值 0, 也难怪它和悲剧的 string 君不同，可以安全地返回我期望的值。</p>
+<p>这启发了我又一条编程规范：<strong>要小心那些没有单位元的函数或运算符，并处理得当。</strong>其实上面合并 string 的代码可以妙用 list comprehension, 回避掉 heading space.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos; &apos;.join([duplicate_line.split()[2] for duplicate_line in duplicate_lines])</div></pre></td></tr></table></figure>
+<p>举一反三，Python Sequences 的 index 为什么从 0 而不是 1 开始计呢？您倒不如想想另一个问题：Sequences Index 的单位元是什么？即对 Index 进行二元运算时，加多少就返回原 Index? 当然是 0 了！再看 C 指针，它和 0 相加时就返回原指针，也难怪 C 的 Array Index 和 Python 的 Sequences Index 都从 0 开始，这是为了<strong>当直接把原 Index（甚至 C 的指针即地址）和 Index 初始值（即单位元）相加时，能方便且直接地得到原 Index（甚至 C 的原指针即原地址）</strong>。</p>
+
+	
+	</div>
+</div>
+
+           
+		
            
 			  
 	
@@ -415,31 +448,6 @@
 
            
 		
-           
-			  
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017 Jun 3 </div>
-			<div class="article-title"><a href="/习惯掀翻棋盘.html" >习惯掀翻棋盘</a></div>						
-		</h3>
-	
-
-
-			  <div class="entry">
-  <div class="row">
-	
-	
-		<p>很久很久以前看到过一个问题：<a href="http://www.rocidea.com/roc-1075.aspx" target="_blank" rel="external">一个上帝、狼、狮子和羊的故事</a>。其实选择权根本无谓，甚至对天敌的反抗也无谓，我的第一反应就是如何干掉上帝，毕竟从一开始的选择问题是他说了算，同时也意味着他可以随时玩死羊群，他才是真正的威胁。<strong>人的强大可不能单单是拘泥于他人施舍的权利，而是自己之所以有权利是因为我能有权利。</strong></p>
-<p>所以我一直对「<a href="https://www.zhihu.com/question/50239793/answer/143608773" target="_blank" rel="external">给你一千万，你会不会卖掉你的老婆？为什么？</a> 」这种问题嗤之以鼻，因为若真遇上了有能力付出这价码的强人，同时意味着他也能轻而易举地从你身上收走同一种等级的代价，非常危险，所以第一反应不是认真思考这蠢问题而是小心翼翼且低调地从他的视线中消失，避免被他随意的行动波及，除非你也足够强悍。</p>
-<p>可惜大多数凡人没我这样的大局观，容易随波逐流。比如国家防火墙因为一些人的行为而封锁 GitHub, 于是有另一些人指责他们而不是国家防火墙本身；再顺便扔个我的看法：有好多人严厉指责 EVA 里的真嗣或三体的程心，都有上帝视角了还没有大局观，这样的观众放到棋盘里面恐怕也只是一个棋子罢了，我不相信他们会比主人公做得更好。</p>
-
-	
-	</div>
-</div>
-
-           
-		
 
 		</div>
 
@@ -450,13 +458,13 @@
 <ul class="pagination">
 	 
 		
-          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
         
 
         <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
 
 		
-		   <li class="next"> <a href="/page/2/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
+		   <li class="next"> <a href="/page/2/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
         
 	
 </ul>
@@ -476,7 +484,7 @@
 			
   <div id="site_search">
    <div class="form-group">
-    <input type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"/>
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
    </div>  
   <div id="local-search-result"></div>
   </div>
@@ -485,24 +493,24 @@
 		
 			
 	<div class="widget">
-		<h4>标签云</h4>
+		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
-		
-			<li><a href="/tags/价值观取向/">价值观取向<span>8</span></a></li>
-		
-			<li><a href="/tags/技术/">技术<span>4</span></a></li>
-		
-			<li><a href="/tags/Python/">Python<span>1</span></a></li>
-		
-			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
 		
 			<li><a href="/tags/C/">C++<span>2</span></a></li>
 		
+			<li><a href="/tags/技术/">技术<span>5</span></a></li>
+		
+			<li><a href="/tags/Python/">Python<span>1</span></a></li>
+		
+			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
+		
+			<li><a href="/tags/价值观取向/">价值观取向<span>8</span></a></li>
+		
 			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
 		
-			<li><a href="/tags/公告/">公告<span>1</span></a></li>
+			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
 		
-			<li><a href="/tags/编程规范/">编程规范<span>3</span></a></li>
+			<li><a href="/tags/公告/">公告<span>1</span></a></li>
 		
 		 
 		</ul>

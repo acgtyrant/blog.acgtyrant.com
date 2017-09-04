@@ -4,6 +4,21 @@
   
     
     <entry>
+      <title><![CDATA[单位元对编程的启发]]></title>
+      <url>http://blog.acgtyrant.com/%E5%8D%95%E4%BD%8D%E5%85%83%E5%AF%B9%E7%BC%96%E7%A8%8B%E7%9A%84%E5%90%AF%E5%8F%91.html</url>
+      <content type="html"><![CDATA[<p>最近，我在处理一个文本文件，它有三列，分别为文件名，数字，字符串，且其中第一列中有若干重复了的部分，于是我需要把这些重复的行合并起来，即第二列合并为总和，第三列合并为一条新字符串，且用空格分隔。</p>
+<p>我一开始想如此合并：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sum = 0</div><div class="line">string = &apos;&apos;</div><div class="line">for duplicate_line in duplicate_lines:</div><div class="line">    sum += int(duplicate_line.split()[1])</div><div class="line">    string = &apos; &apos;.join(string,  duplicate_line.split()[2])</div></pre></td></tr></table></figure>
+<p>但迭代完后 string 并不符合我的期望，它包含了一个 heading space! 这令我想起了抽象代数学上的「单位元」，即<strong>它在某二元运算中，与任意元素运算后，结果的值恒为后者本身。</strong>比如加法中的 0 与任何数字相加，恒返回后者的原值；乘法中的 1 也同理。</p>
+<p>于是我们可以说，把 ‘ ‘.join() 当二元运算符来看时，<strong>不存在单位元</strong>，即 ‘ ‘.join([a, b]) 中 b 为任意字符串时，不存在 a 变量能使这函数返回 b 本身，哪怕变量 a 为空字符串时，也会返回包含了一个 heading space 和 b 值的新字符串！就像我上面的代码一样。不过 ‘’.join() 当然就有单位元即空字符串。</p>
+<p>反观 Python 的 int 加法，它就有单位元，即 sum 的初值 0, 也难怪它和悲剧的 string 君不同，可以安全地返回我期望的值。</p>
+<p>这启发了我又一条编程规范：<strong>要小心那些没有单位元的函数或运算符，并处理得当。</strong>其实上面合并 string 的代码可以妙用 list comprehension, 回避掉 heading space.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos; &apos;.join([duplicate_line.split()[2] for duplicate_line in duplicate_lines])</div></pre></td></tr></table></figure>
+<p>举一反三，Python Sequences 的 index 为什么从 0 而不是 1 开始计呢？您倒不如想想另一个问题：Sequences Index 的单位元是什么？即对 Index 进行二元运算时，加多少就返回原 Index? 当然是 0 了！再看 C 指针，它和 0 相加时就返回原指针，也难怪 C 的 Array Index 和 Python 的 Sequences Index 都从 0 开始，这是为了<strong>当直接把原 Index（甚至 C 的指针即地址）和 Index 初始值（即单位元）相加时，能方便且直接地得到原 Index（甚至 C 的原指针即原地址）</strong>。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[什么情况下 map 比 list comprehension 好？]]></title>
       <url>http://blog.acgtyrant.com/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B-map-%E6%AF%94-list-comprehension-%E5%A5%BD%EF%BC%9F.html</url>
       <content type="html"><![CDATA[<p>事实上，<a href="https://stackoverflow.com/questions/1247486/python-list-comprehension-vs-map/1247490#1247490" target="_blank" rel="external">list comprehension 公认效率比 map 好</a>，<strong>所以当 map 比 list comprehension 可读性好且不在乎性能时，可以优先用前者。</strong></p>

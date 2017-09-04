@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>我怎么借钱给朋友 | Tyrant&#39;s Blog</title>
+  <title>单位元对编程的启发 | Tyrant&#39;s Blog</title>
   <meta name="author" content="Isaac Ge">
   
   <meta name="description" content="It&#39;s just acgtyrant&#39;s blog... or delusion.">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="我怎么借钱给朋友"/>
+  <meta property="og:title" content="单位元对编程的启发"/>
   <meta property="og:site_name" content="Tyrant&#39;s Blog"/>
 
   
@@ -81,7 +81,7 @@
 
 	
 		<div class="page-header page-header-inverse ">		
-			<h1 class="title title-inverse "> 我怎么借钱给朋友</h1>
+			<h1 class="title title-inverse "> 单位元对编程的启发</h1>
 		</div>		
 	
 
@@ -101,14 +101,15 @@
 	<div class="mypage">		
 	  		
 
-	  <p>一开始问清楚对方想借多少，设为 <code>A</code>; 然后我要想一想，我愿意白送给他多少钱，即有借无还，设为 <code>B</code>. 最后借他 <code>min(A, B)</code> 钱。</p>
-<p>如果是老朋友，不打借条，我会信赖口头承诺；反之则反。</p>
-<p>就我目前的财力来看，<code>B</code> 少得比不上银行贷款，自然也没收什么利息的余地，就算如此，<strong>我愿意免息，这其实已经是友谊的象征了。</strong></p>
-<p>如果对方故意不还钱，我也不会提，毕竟一开始就把借钱金额控制在「我愿意白送他多少」条件下了，自然也不会坏什么心情，于是照常和对方怎么打交道就怎么打交道。但是，若对方依然要借钱且总借款已超过 B 上限，我不会答应，如果对方变本加厉以断交为威胁，那友谊的小船说翻就翻吧，毕竟这从来只是他单方面的个人问题，我的损失也不疼不痒。</p>
-<p>其实，比起我向别人借钱，我更愿意向正规银行借钱，信用卡或银行贷款都是好东西，银行给你评估风险，设置的额度也相应科学，好说；借车也向商业公司租赁，以免发生<a href="https://www.zhihu.com/question/25015924" target="_blank" rel="external">这些狗血破事</a>；重大人身事故直接上社会保险和商业保险而不是到处向亲戚朋友拉众筹。我希望我的朋友们也是这样的聪明人。</p>
-<blockquote>
-<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
-</blockquote>
+	  <p>最近，我在处理一个文本文件，它有三列，分别为文件名，数字，字符串，且其中第一列中有若干重复了的部分，于是我需要把这些重复的行合并起来，即第二列合并为总和，第三列合并为一条新字符串，且用空格分隔。</p>
+<p>我一开始想如此合并：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sum = 0</div><div class="line">string = &apos;&apos;</div><div class="line">for duplicate_line in duplicate_lines:</div><div class="line">    sum += int(duplicate_line.split()[1])</div><div class="line">    string = &apos; &apos;.join(string,  duplicate_line.split()[2])</div></pre></td></tr></table></figure>
+<p>但迭代完后 string 并不符合我的期望，它包含了一个 heading space! 这令我想起了抽象代数学上的「单位元」，即<strong>它在某二元运算中，与任意元素运算后，结果的值恒为后者本身。</strong>比如加法中的 0 与任何数字相加，恒返回后者的原值；乘法中的 1 也同理。</p>
+<p>于是我们可以说，把 ‘ ‘.join() 当二元运算符来看时，<strong>不存在单位元</strong>，即 ‘ ‘.join([a, b]) 中 b 为任意字符串时，不存在 a 变量能使这函数返回 b 本身，哪怕变量 a 为空字符串时，也会返回包含了一个 heading space 和 b 值的新字符串！就像我上面的代码一样。不过 ‘’.join() 当然就有单位元即空字符串。</p>
+<p>反观 Python 的 int 加法，它就有单位元，即 sum 的初值 0, 也难怪它和悲剧的 string 君不同，可以安全地返回我期望的值。</p>
+<p>这启发了我又一条编程规范：<strong>要小心那些没有单位元的函数或运算符，并处理得当。</strong>其实上面合并 string 的代码可以妙用 list comprehension, 回避掉 heading space.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos; &apos;.join([duplicate_line.split()[2] for duplicate_line in duplicate_lines])</div></pre></td></tr></table></figure>
+<p>举一反三，Python Sequences 的 index 为什么从 0 而不是 1 开始计呢？您倒不如想想另一个问题：Sequences Index 的单位元是什么？即对 Index 进行二元运算时，加多少就返回原 Index? 当然是 0 了！再看 C 指针，它和 0 相加时就返回原指针，也难怪 C 的 Array Index 和 Python 的 Sequences Index 都从 0 开始，这是为了<strong>当直接把原 Index（甚至 C 的指针即地址）和 Index 初始值（即单位元）相加时，能方便且直接地得到原 Index（甚至 C 的原指针即原地址）</strong>。</p>
 	  
 	</div>
 
@@ -117,14 +118,14 @@
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/如何打分.html" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/少鉴定他人，多表达偏好.html" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/什么情况下-map-比-list-comprehension-好？.html" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -163,7 +164,7 @@
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2017 Jun 24 
+	2017 Sep 4 
 	</div>
 	
 
@@ -176,7 +177,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/价值观取向/">价值观取向<span>8</span></a></li>
+  <li><a href="/tags/编程规范/">编程规范<span>4</span></a></li> <li><a href="/tags/技术/">技术<span>5</span></a></li>
     </ul>
 	</div>
 		
