@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>只有 Python 高手知道的 tuple | Tyrant&#39;s Blog</title>
+  <meta name="author" content="Isaac Ge">
+  
+  <meta name="description" content="It&#39;s just acgtyrant&#39;s blog... or delusion.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="只有 Python 高手知道的 tuple"/>
+  <meta property="og:site_name" content="Tyrant&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Tyrant&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Tyrant&#39;s Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="">
+			  <i class="fa fa-rss"></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> 只有 Python 高手知道的 tuple</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>熟悉 Python 的人都知道，它从语法上支持的内置数据结构一共四种，即 tuple, list, dict, set 等, sequence comprehension 一共有三个，唯独没有 tuple comprehension, 其形式被解析为生成器表达式，而且表示单元素的 tuple 也很不一样，需要额外添加一个在新手看来十分碍眼的<strong>逗号</strong>：<code>(1,)</code>.</p>
+<p>但其实我们只简单地把 tuple 理解为一个 immutable 版 list 了，并没有深刻理解到它的本质。推上有人如此一针见血地指出：</p>
+<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/python?src=hash" target="_blank" rel="external">#python</a> tip:  Generally, lists are for looping; tuples for structs. Lists are homogeneous; tuples heterogeneous.  Lists for variable length.</p>&mdash; Raymond Hettinger (@raymondh) <a href="https://twitter.com/raymondh/status/324664257004322817" target="_blank" rel="external">2013年4月17日</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>我终于发现了，tuple <strong>既可以当数据结构，又可以当模式来匹配变量</strong>。所以 tuple 说穿了是一个「不规则又不可变的数据结构或模式」，自然没有「推导规律」介入的余地，也难怪没有所谓的 <a href="https://stackoverflow.com/questions/16940293/why-is-there-no-tuple-comprehension-in-python" target="_blank" rel="external">tuple comprehension</a> 了。</p>
+<p>一旦洞察 tuple 的本质后，你就发现，tuple 原来大有文章：</p>
+<p>其一，事实上，返回多个值的函数实则是在返回一个 tuple, 只不过可以省略括号而已。一旦理解透这个，就不会再写出 <code>tp, label_tp = [], [] if len(result) == 0 else zip(*result)</code> 这大坑了。</p>
+<p>其二，只有一个变量的 tuple 在模式里可谓等价于变量本身，于是<strong>不是说 (1,) 里的逗号多余，而是它本身的括号就多余，毕竟没人爱写 <code>(a,) = (b,)</code></strong>; 其实 <code>()</code> 才是唯一真正特殊的 tuple; 于是纯括号就可以被名正言顺地赋予数学上的意义了，即 <code>(a)</code> 等于 <code>a</code>, 而且其实这还带来了方便 wrap line 的额外好处：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hfm_dir_str = (</div><div class="line">        &apos;/home/acgtyrant/Projects/HamsterForMTK/&apos;</div><div class="line">        &apos;Hamster_Android_SDK/src/com/mapbar/hamster&apos;)</div></pre></td></tr></table></figure>
+<p>其三，虽说没多少人喜欢 <code>(1,)</code> 这写法，但我们可以分拆 sequence 值成多行，<strong>且每行后更有一个逗号</strong>！这对强迫症患者真是终极福音：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">phodopus_evaluate_command = (</div><div class="line">        command_pathname,</div><div class="line">        &apos;-v&apos;, video_pathname,</div><div class="line">        &apos;--proto&apos;, proto_pathname,</div><div class="line">        &apos;--model&apos;, model_pathname,</div><div class="line">        &apos;--mean&apos;, mean_pathname,</div><div class="line">        &apos;-c&apos;, cascade_model_pathname,</div><div class="line">        &apos;--lf_proto&apos;, lf_proto_pathname,</div><div class="line">        &apos;--lf_model&apos;, lf_model_pathname,</div><div class="line">        &apos;--lf_mean&apos;, lf_mean_pathname,</div><div class="line">        &apos;--noshow&apos;,</div><div class="line">)</div></pre></td></tr></table></figure>
+<p><strong>于是我习惯分拆函数的超长形参列表多行了，且最后一行以右括号结尾；多行的 sequence 值则倒数第二行以逗号结尾，倒数一行以右括号结尾且不缩进。</strong></p>
+<p>其四，tuple 不光可当安全的 immutable 数据结构，而且<a href="https://stackoverflow.com/questions/68630/are-tuples-more-efficient-than-lists-in-python" target="_blank" rel="external">效率公认比 list 好</a>。</p>
+<p>此外，tuple 在模式匹配上也威力十足：</p>
+<p>其一，方便交换变量：<code>a, b = b, a</code>, 毕竟等价于 <code>(a, b) = (b, a)</code> 模式匹配嘛。</p>
+<p>其二，<a href="https://www.python.org/dev/peps/pep-3132" target="_blank" rel="external">PEP 3132 – Extended Iterable Unpacking</a> 和 <a href="https://www.python.org/dev/peps/pep-0448" target="_blank" rel="external">PEP 448 – Additional Unpacking Generalizations</a> 也是模式匹配。此外，我们不能直接用星号 unpack generator, 但照样可以模式匹配 <code>a, *_ = range(10)</code>, 毕竟只要后者能迭代就行了。现在看来，由于我已经洞察了 tuple 的本质，对它原本的坏印象也没有了。</p>
+<p>其三，如果你想要可读性更好的模式匹配，可以试试 <code>collections.namedtuple</code> 库。</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/「听力残疾」不完全科普.html" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017 Sep 19 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/技术/">技术<span>6</span></a></li> <li><a href="/tags/Python/">Python<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'acgtyrant';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2017 Isaac Ge
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

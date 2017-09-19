@@ -129,9 +129,51 @@
 		
             
 		
+            
+		
         
         <!-- render other articles -->
         
+           
+			  
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2017 Sep 19 </div>
+			<div class="article-title"><a href="/只有-Python-高手知道的-tuple.html" >只有 Python 高手知道的 tuple</a></div>						
+		</h3>
+	
+
+
+			  <div class="entry">
+  <div class="row">
+	
+	
+		<p>熟悉 Python 的人都知道，它从语法上支持的内置数据结构一共四种，即 tuple, list, dict, set 等, sequence comprehension 一共有三个，唯独没有 tuple comprehension, 其形式被解析为生成器表达式，而且表示单元素的 tuple 也很不一样，需要额外添加一个在新手看来十分碍眼的<strong>逗号</strong>：<code>(1,)</code>.</p>
+<p>但其实我们只简单地把 tuple 理解为一个 immutable 版 list 了，并没有深刻理解到它的本质。推上有人如此一针见血地指出：</p>
+<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/python?src=hash" target="_blank" rel="external">#python</a> tip:  Generally, lists are for looping; tuples for structs. Lists are homogeneous; tuples heterogeneous.  Lists for variable length.</p>&mdash; Raymond Hettinger (@raymondh) <a href="https://twitter.com/raymondh/status/324664257004322817" target="_blank" rel="external">2013年4月17日</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>我终于发现了，tuple <strong>既可以当数据结构，又可以当模式来匹配变量</strong>。所以 tuple 说穿了是一个「不规则又不可变的数据结构或模式」，自然没有「推导规律」介入的余地，也难怪没有所谓的 <a href="https://stackoverflow.com/questions/16940293/why-is-there-no-tuple-comprehension-in-python" target="_blank" rel="external">tuple comprehension</a> 了。</p>
+<p>一旦洞察 tuple 的本质后，你就发现，tuple 原来大有文章：</p>
+<p>其一，事实上，返回多个值的函数实则是在返回一个 tuple, 只不过可以省略括号而已。一旦理解透这个，就不会再写出 <code>tp, label_tp = [], [] if len(result) == 0 else zip(*result)</code> 这大坑了。</p>
+<p>其二，只有一个变量的 tuple 在模式里可谓等价于变量本身，于是<strong>不是说 (1,) 里的逗号多余，而是它本身的括号就多余，毕竟没人爱写 <code>(a,) = (b,)</code></strong>; 其实 <code>()</code> 才是唯一真正特殊的 tuple; 于是纯括号就可以被名正言顺地赋予数学上的意义了，即 <code>(a)</code> 等于 <code>a</code>, 而且其实这还带来了方便 wrap line 的额外好处：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hfm_dir_str = (</div><div class="line">        &apos;/home/acgtyrant/Projects/HamsterForMTK/&apos;</div><div class="line">        &apos;Hamster_Android_SDK/src/com/mapbar/hamster&apos;)</div></pre></td></tr></table></figure>
+<p>其三，虽说没多少人喜欢 <code>(1,)</code> 这写法，但我们可以分拆 sequence 值成多行，<strong>且每行后更有一个逗号</strong>！这对强迫症患者真是终极福音：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">phodopus_evaluate_command = (</div><div class="line">        command_pathname,</div><div class="line">        &apos;-v&apos;, video_pathname,</div><div class="line">        &apos;--proto&apos;, proto_pathname,</div><div class="line">        &apos;--model&apos;, model_pathname,</div><div class="line">        &apos;--mean&apos;, mean_pathname,</div><div class="line">        &apos;-c&apos;, cascade_model_pathname,</div><div class="line">        &apos;--lf_proto&apos;, lf_proto_pathname,</div><div class="line">        &apos;--lf_model&apos;, lf_model_pathname,</div><div class="line">        &apos;--lf_mean&apos;, lf_mean_pathname,</div><div class="line">        &apos;--noshow&apos;,</div><div class="line">)</div></pre></td></tr></table></figure>
+<p><strong>于是我习惯分拆函数的超长形参列表多行了，且最后一行以右括号结尾；多行的 sequence 值则倒数第二行以逗号结尾，倒数一行以右括号结尾且不缩进。</strong></p>
+<p>其四，tuple 不光可当安全的 immutable 数据结构，而且<a href="https://stackoverflow.com/questions/68630/are-tuples-more-efficient-than-lists-in-python" target="_blank" rel="external">效率公认比 list 好</a>。</p>
+<p>此外，tuple 在模式匹配上也威力十足：</p>
+<p>其一，方便交换变量：<code>a, b = b, a</code>, 毕竟等价于 <code>(a, b) = (b, a)</code> 模式匹配嘛。</p>
+<p>其二，<a href="https://www.python.org/dev/peps/pep-3132" target="_blank" rel="external">PEP 3132 – Extended Iterable Unpacking</a> 和 <a href="https://www.python.org/dev/peps/pep-0448" target="_blank" rel="external">PEP 448 – Additional Unpacking Generalizations</a> 也是模式匹配。此外，我们不能直接用星号 unpack generator, 但照样可以模式匹配 <code>a, *_ = range(10)</code>, 毕竟只要后者能迭代就行了。现在看来，由于我已经洞察了 tuple 的本质，对它原本的坏印象也没有了。</p>
+<p>其三，如果你想要可读性更好的模式匹配，可以试试 <code>collections.namedtuple</code> 库。</p>
+
+	
+	</div>
+</div>
+
+           
+		
            
 			  
 	
@@ -445,41 +487,6 @@
 
            
 		
-           
-			  
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017 Jun 12 </div>
-			<div class="article-title"><a href="/少鉴定他人，多表达偏好.html" >少鉴定他人，多表达偏好</a></div>						
-		</h3>
-	
-
-
-			  <div class="entry">
-  <div class="row">
-	
-	
-		<p>开门见山，所谓「鉴定」，即是 judge.</p>
-<p>我在 about 上如此介绍自己「超・完美無瑕之守序中立」，在称呼上尤其如此。<strong>我现在凡称呼每一样东西，都尽量用相当中性，不带任何色彩的词语。</strong>副作用是，我已经一本正经到已经不爱用「帝都魔都妖都」这些诙谐的称呼了。</p>
-<blockquote class="twitter-tweet" lang="zh-cn"><p lang="zh" dir="ltr">@erase2004 光寫著正體中文就不知道比他們殘體中文有文化多少倍了，果然經過文化大革命的國家人民思想個個超英趕美呢(？</p> xatier[AT]黑色奇蹟←↑↓→ (@xatierlikeLee) 2015年11月8日</blockquote>
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p>我不打算讨论繁体中文与简体中文之间所谓的高下之分，大家用让自己愉悦的中文就好，谁挑衅就静默拉黑谁。可是 @xatierlikeLee 放着「简体中文」不用，而是把它叫成「残体中文」，这称呼自然颇为贬低。此外这构成了一个鉴定，且容易让所有人陷入一个「非黑极白」的谬误。因为既然一开始他把它叫成「残体中文」，那么议题往往会变成对「残体中文」的鉴定，即「它到底是不是残体中文」的是非题，而不是更为具体客观的「它有什么残缺」。</p>
-<p>同理，天朝、五毛、美分、圣母、理中客等一样是简单粗暴的鉴定，即我所理解的 judge. 当然，<strong>我向来不轻易鉴定他人，也不接受他人的恶意鉴定，无礼之徒一律静默拉黑。</strong>此外我并不喜欢菊苣大神等这些正面鉴定，虽无冒犯之意，但也没诚意，毕竟通货膨胀到贬值，只有当面赞美并肯定他人做了怎样的壮举与善举，或是用稀贵的敬辞，如阁下先生老师等，才情真意切。可惜，<a href="http://blog.acgtyrant.com/你只不过是我们的产品罢了，毕竟又不是您.html">如今现在大部分中国互联网企业连用「您」这简单的客套话都做不到了</a>。</p>
-<p>同理同理，想必有些人会对知乎上所谓「利益相关」声明反感无比吧，因为当事人直接自我鉴定成非黑即白的个体，比如「我是上海人」，那么议题同时就塌缩成二元了，即他的答案只在「你也是上海人」时正确，反之则反。于是说到底既然对方都自我鉴定成那样了，还继续讨论议题，只会浪费彼此的时间。另一方面，若当事人不涉及对双方的鉴定，而是精准地讨论何种行为对彼此有何利弊，于是博弈起来又快又直，这样我才喜欢。</p>
-<p>然而，人能表达自己偏好何人何物，并进一步解释。比如 xatierlikeLee  可以表达：「我不喜欢简体中文，因为它有缺陷」，情有可原。<strong>这样大家就能相互理解，且道不同不相为谋，更加节约彼此的时间，让彼此进一步找到自己所偏好的人物，开心就好。</strong></p>
-<blockquote>
-<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.)</p>
-</blockquote>
-
-	
-	</div>
-</div>
-
-           
-		
 
 		</div>
 
@@ -530,19 +537,19 @@
 		
 			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
 		
-			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
+			<li><a href="/tags/Python/">Python<span>2</span></a></li>
+		
+			<li><a href="/tags/C/">C++<span>2</span></a></li>
 		
 			<li><a href="/tags/价值观取向/">价值观取向<span>8</span></a></li>
 		
-			<li><a href="/tags/Python/">Python<span>1</span></a></li>
-		
-			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
-		
-			<li><a href="/tags/技术/">技术<span>5</span></a></li>
+			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
 		
 			<li><a href="/tags/公告/">公告<span>1</span></a></li>
 		
-			<li><a href="/tags/C/">C++<span>2</span></a></li>
+			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
+		
+			<li><a href="/tags/技术/">技术<span>6</span></a></li>
 		
 		 
 		</ul>
