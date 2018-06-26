@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在 Linux 下全面使用真彩 | Tyrant&#39;s Blog</title>
+  <meta name="author" content="Isaac Ge">
+  
+  <meta name="description" content="It&#39;s just acgtyrant&#39;s blog... or delusion.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="在 Linux 下全面使用真彩"/>
+  <meta property="og:site_name" content="Tyrant&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Tyrant&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/themes/bootstrap.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand" href="/">Tyrant&#39;s Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="">
+			  <i class="fa fa-rss"></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header page-header-inverse ">		
+			<h1 class="title title-inverse "> 在 Linux 下全面使用真彩</h1>
+		</div>		
+	
+
+
+
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p><img src="images/truecolor.png" alt="Termite, Tmux and NeoVim in true color."></p>
+<p>我过去一直没真正弄好虚拟终端、Tmux 和 Vim 的配色，今天下定决心，终于彻底理清了它们在颜色上的来龙去脉。本文目标如题，那些本来支持真彩的成熟 GUI 程序就不说了，重点便是如何配色好 Termite，Tmux 和 NeoVim 等。</p>
+<p>颜色有<a href="https://zh.wikipedia.org/wiki/色彩深度" target="_blank" rel="external">色彩深度</a>之分。</p>
+<p>8-bit color 又名 256 color，用于最早期的彩色 Unix 工作站，于是一些古代虚拟终端连同这种局限也虚拟出来了，即它们只支持 8 位颜色，比如 xterm 和 urxvt。还有古老的终端多路复用器 screen 和 Tmux 也默认用 256 颜色。</p>
+<p>24-bit color 又名 true color，一共有 16,777,216 colors，于是有人习惯用 “16 million colors” 称呼它，就像先前大家有时用 256 color 称呼 8-bit color 一样。它的表示形式要么是 a 24-bit hex value (e.g. <code>#4a32b1</code>)，要么是 an rgba vector (e.g. <code>rgba(16, 32, 64)</code>。</p>
+<p>32-bit color 基于 24-bit color 而生，增加了 8-bit 透明通道。真・现代虚拟终端 Termite 就支持，以致它的背景可以变成半透明，阿宅喜欢靠它来看 waifu。此外 Termite 还可以直接把 8-bit color 单射到 24-bit color，比如 <code>color0 = #073642</code> 意味着把第一个 8-bit color 映射到某 24-bit color <code>#073642</code>。</p>
+<p>有个环境变量叫 <code>TERM</code>，contains the type of the running terminal, e.g. <code>xterm-256color</code>. It is used by programs running in the terminal that wish to use terminal-specific capabilities. 我猜它主要是用来告知程序当前虚拟终端支持的颜色，好让后者自动选择相应合适的颜色空间。我发现 Termite 和 Tmux 会自动设置相应的 <code>TERM</code>，即分别为 <code>xterm-termite</code> 和 <code>screen</code>，由此看来用户不需要手动指定 <code>TERM</code> 了。</p>
+<p>不过上面既然提到了 Tmux 的 <code>TERM</code> 是 <code>screen</code>，而后者又只支持 256 color，于是得让它改用 true color，好在 Tmux 2.2 已经支持了，<a href="https://wiki.archlinux.org/index.php/Tmux#24-bit_color" target="_blank" rel="external">设置也不难</a>。</p>
+<p>最后的关键便是 Vim 的配色了，<a href="http://vim.wikia.com/wiki/256_colors_in_vim" target="_blank" rel="external">256 colors in vim</a> 发表于二〇〇六年，它还把支持 256 color 的 XTerm 当成所谓的现代虚拟终端，还说若 vim 想在 256 color 虚拟终端使用 256 color colorscheme，需要在 <code>.vimrc</code> 显式设置 <code>set t_Co=256</code>，这说明 Vim 本身默认的颜色空间可能都小于 8-bit！它不愧比虚拟终端还要古老。</p>
+<p>五年后，依云发表《<a href="https://blog.lilydjwg.me/2011/6/15/let-vim-in-terminal-as-beautiful-as-gvim-gui2term-py-updates-to-version-3-0.27349.html" target="_blank" rel="external">让 Vim 在终端下和 GVIM 一样漂亮：gui2term.py 更新至 3.0 版</a>》，按这篇的说法，Vim 在 256 color 虚拟终端里没法像 GVim 用 24-bit color 即 True Color ColorScheme，需要通过某脚本把 True Color ColorScheme 转换成 Vim 可加载的 256 color ColorScheme，一劳永逸解决配色问题，虽然是近似的。</p>
+<p>如今，@NanozukiCrows 发了一条推：</p>
+<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr">折腾了下 tmux 和 vim，用上 true color 主题了。再也不用忍受 16色 256色的 vim 了，顺眼了不少<br>现在用的是这个主题：gruvbox <a href="https://t.co/nXAN02kDuG" target="_blank" rel="external">https://t.co/nXAN02kDuG</a> <a href="https://t.co/VwlhCdTrMp" target="_blank" rel="external">pic.twitter.com/VwlhCdTrMp</a></p>&mdash; 结夜野棠 (@NanozukiCrows) <a href="https://twitter.com/NanozukiCrows/status/1008207005721300993?ref_src=twsrc%5Etfw" target="_blank" rel="external">2018年6月17日</a></blockquote></p>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>就是这推促使了我彻底折腾并搞定颜色的来龙去脉。现在御用真・现代虚拟终端 Termite 本来就支持 32-bit color，御用终端多路复用器 Tmux 2.2 也支持 True Color。尽管我不清楚 Vim 对 True Color 的支持如何，但御用现代文本编辑器 NeoVim 设置 <code>termguicolors</code> 就可以支持了，再用任意 True Color ColorScheme，比如 <code>Plug &#39;morhetz/gruvbox</code>, <code>colorscheme gruvbox</code> 即可，当然，别忘了去掉 <code>set t_Co=256</code> 这蛋疼的古代颜色支持方案。</p>
+<p><a href="https://gist.github.com/XVilka/8346728" target="_blank" rel="external">True Colour (16 million colours) support in various terminal applications and terminals</a> 也科普得很棒，里面有若干 <a href="https://gist.github.com/XVilka/8346728#here-are-another-console-programs-discussions" target="_blank" rel="external">console programs</a> 实在让人眼一亮，比如 <a href="https://github.com/hzeller/timg" target="_blank" rel="external">timg</a> 和 <a href="https://github.com/sebastiencs/ls-icons" target="_blank" rel="external">ls-icons</a>，原来真彩支持好了，在虚拟终端看图像和 Icons 也不难。</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
+</blockquote>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+        
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/无视原则.html" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+
+    <!-- share -->
+    
+        
+
+        
+
+    
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">留言</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	</div> <!-- col-md-9/col-md-12 -->
+		
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018 Jun 26 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/技术/">技术<span>7</span></a></li> <li><a href="/tags/Linux/">Linux<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	</div>
+		
+
+</div><!-- row -->
+
+<script type="text/javascript">
+var disqus_shortname = 'acgtyrant';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2018 Isaac Ge
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

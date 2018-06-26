@@ -133,9 +133,52 @@
 		
             
 		
+            
+		
         
         <!-- render other articles -->
         
+           
+			  
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018 Jun 26 </div>
+			<div class="article-title"><a href="/在-Linux-下全面使用真彩.html" >在 Linux 下全面使用真彩</a></div>						
+		</h3>
+	
+
+
+			  <div class="entry">
+  <div class="row">
+	
+	
+		<p><img src="images/truecolor.png" alt="Termite, Tmux and NeoVim in true color."></p>
+<p>我过去一直没真正弄好虚拟终端、Tmux 和 Vim 的配色，今天下定决心，终于彻底理清了它们在颜色上的来龙去脉。本文目标如题，那些本来支持真彩的成熟 GUI 程序就不说了，重点便是如何配色好 Termite，Tmux 和 NeoVim 等。</p>
+<p>颜色有<a href="https://zh.wikipedia.org/wiki/色彩深度" target="_blank" rel="external">色彩深度</a>之分。</p>
+<p>8-bit color 又名 256 color，用于最早期的彩色 Unix 工作站，于是一些古代虚拟终端连同这种局限也虚拟出来了，即它们只支持 8 位颜色，比如 xterm 和 urxvt。还有古老的终端多路复用器 screen 和 Tmux 也默认用 256 颜色。</p>
+<p>24-bit color 又名 true color，一共有 16,777,216 colors，于是有人习惯用 “16 million colors” 称呼它，就像先前大家有时用 256 color 称呼 8-bit color 一样。它的表示形式要么是 a 24-bit hex value (e.g. <code>#4a32b1</code>)，要么是 an rgba vector (e.g. <code>rgba(16, 32, 64)</code>。</p>
+<p>32-bit color 基于 24-bit color 而生，增加了 8-bit 透明通道。真・现代虚拟终端 Termite 就支持，以致它的背景可以变成半透明，阿宅喜欢靠它来看 waifu。此外 Termite 还可以直接把 8-bit color 单射到 24-bit color，比如 <code>color0 = #073642</code> 意味着把第一个 8-bit color 映射到某 24-bit color <code>#073642</code>。</p>
+<p>有个环境变量叫 <code>TERM</code>，contains the type of the running terminal, e.g. <code>xterm-256color</code>. It is used by programs running in the terminal that wish to use terminal-specific capabilities. 我猜它主要是用来告知程序当前虚拟终端支持的颜色，好让后者自动选择相应合适的颜色空间。我发现 Termite 和 Tmux 会自动设置相应的 <code>TERM</code>，即分别为 <code>xterm-termite</code> 和 <code>screen</code>，由此看来用户不需要手动指定 <code>TERM</code> 了。</p>
+<p>不过上面既然提到了 Tmux 的 <code>TERM</code> 是 <code>screen</code>，而后者又只支持 256 color，于是得让它改用 true color，好在 Tmux 2.2 已经支持了，<a href="https://wiki.archlinux.org/index.php/Tmux#24-bit_color" target="_blank" rel="external">设置也不难</a>。</p>
+<p>最后的关键便是 Vim 的配色了，<a href="http://vim.wikia.com/wiki/256_colors_in_vim" target="_blank" rel="external">256 colors in vim</a> 发表于二〇〇六年，它还把支持 256 color 的 XTerm 当成所谓的现代虚拟终端，还说若 vim 想在 256 color 虚拟终端使用 256 color colorscheme，需要在 <code>.vimrc</code> 显式设置 <code>set t_Co=256</code>，这说明 Vim 本身默认的颜色空间可能都小于 8-bit！它不愧比虚拟终端还要古老。</p>
+<p>五年后，依云发表《<a href="https://blog.lilydjwg.me/2011/6/15/let-vim-in-terminal-as-beautiful-as-gvim-gui2term-py-updates-to-version-3-0.27349.html" target="_blank" rel="external">让 Vim 在终端下和 GVIM 一样漂亮：gui2term.py 更新至 3.0 版</a>》，按这篇的说法，Vim 在 256 color 虚拟终端里没法像 GVim 用 24-bit color 即 True Color ColorScheme，需要通过某脚本把 True Color ColorScheme 转换成 Vim 可加载的 256 color ColorScheme，一劳永逸解决配色问题，虽然是近似的。</p>
+<p>如今，@NanozukiCrows 发了一条推：</p>
+<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr">折腾了下 tmux 和 vim，用上 true color 主题了。再也不用忍受 16色 256色的 vim 了，顺眼了不少<br>现在用的是这个主题：gruvbox <a href="https://t.co/nXAN02kDuG" target="_blank" rel="external">https://t.co/nXAN02kDuG</a> <a href="https://t.co/VwlhCdTrMp" target="_blank" rel="external">pic.twitter.com/VwlhCdTrMp</a></p>&mdash; 结夜野棠 (@NanozukiCrows) <a href="https://twitter.com/NanozukiCrows/status/1008207005721300993?ref_src=twsrc%5Etfw" target="_blank" rel="external">2018年6月17日</a></blockquote></p>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>就是这推促使了我彻底折腾并搞定颜色的来龙去脉。现在御用真・现代虚拟终端 Termite 本来就支持 32-bit color，御用终端多路复用器 Tmux 2.2 也支持 True Color。尽管我不清楚 Vim 对 True Color 的支持如何，但御用现代文本编辑器 NeoVim 设置 <code>termguicolors</code> 就可以支持了，再用任意 True Color ColorScheme，比如 <code>Plug &#39;morhetz/gruvbox</code>, <code>colorscheme gruvbox</code> 即可，当然，别忘了去掉 <code>set t_Co=256</code> 这蛋疼的古代颜色支持方案。</p>
+<p><a href="https://gist.github.com/XVilka/8346728" target="_blank" rel="external">True Colour (16 million colours) support in various terminal applications and terminals</a> 也科普得很棒，里面有若干 <a href="https://gist.github.com/XVilka/8346728#here-are-another-console-programs-discussions" target="_blank" rel="external">console programs</a> 实在让人眼一亮，比如 <a href="https://github.com/hzeller/timg" target="_blank" rel="external">timg</a> 和 <a href="https://github.com/sebastiencs/ls-icons" target="_blank" rel="external">ls-icons</a>，原来真彩支持好了，在虚拟终端看图像和 Icons 也不难。</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
+</blockquote>
+
+	
+	</div>
+</div>
+
+           
+		
            
 			  
 	
@@ -453,41 +496,6 @@
 
            
 		
-           
-			  
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017 Jun 27 </div>
-			<div class="article-title"><a href="/如何打分.html" >如何打分</a></div>						
-		</h3>
-	
-
-
-			  <div class="entry">
-  <div class="row">
-	
-	
-		<p>豆瓣对书籍和电影的评分是五星制，即一星到五星的字面意义分别为：很差——较差——还行——推荐——力荐。</p>
-<p>我对这评分制很满意，因为它的评级是奇数，即存在中间值，又向高低延伸了恰到好处的两个评级。这么以来我可以如此进一步阐释该评分机制：</p>
-<p>三星：可有可无，即看了没啥快感，不看也没损失。<br>二星：反感，即有负面评价。<br>四星：好看，使我产生了愉悦感，自然愿意向他人推荐。<br>五星：特别好看，让我十分狂喜，以致愿意给出远超四星的高评价，证明这是佳作中的佳作。<br>一星：负面情绪更为强烈，即对其抱有纯粹的敌意，我也许会为此破口大骂，执行制裁。</p>
-<p>一星和二星的区别很关键，世界那么大，我不喜欢的东西自然也多了去，对于二星作品，我讨厌它，但可以老死不相往来，于是彼此的互动也就到此为止了。不过我若给作品一星，说明这作品不光惹我讨厌，而且还彻底激怒了我，以致我竟然产生纯粹的敌意来。所以我不会轻易给作品打一星，如果打了，说明性质很严重。</p>
-<p>我回顾了下我到目前为止看过的 179 部电影，其中被我打一星的作品只有「美丽中国乡村行」和「嫁给大山的女人」，一个涉及抄袭，另一个在宣传我所敌视的拐卖价值观。</p>
-<p>此外，我在回顾中又重新审视了下四星和五星的区别，其实它们应该贯彻二八定律：即五星只给一堆已经达到四星水准的作品中特别出色的部分，即佳作中的佳作。且如果五星评价次数与四星的比例越小，说明其评价越愈发稀缺，份量自然也越高。于是我重新把过多的五星评价打回三四星，留下了极少数我觉得愿意给出五星评价的上乘作品。</p>
-<p>我决定每年不光归档当年已观看的作品，还要集中重新回顾作品一次，原本好看且被评为四星的作品要么继续保留四星，要么因为我审美观进一步提高而被降星，给出五星的评价次数一定要控制在百分之二十以内。原则上来说五星评价应该越少越好，且大多数作品的得分集中在三星四星，毕竟若看的二星作品过多，说明我自己在自讨苦吃，没有意义。</p>
-<p>我给出五星评价的作品到目前为止有：狩猎、地心引力、降临、你的名字、革命机、疯狂动物城、火星救援、西游记之大圣归来、迷雾、消失的爱人、海洋天堂、辩护人、僵尸世界大战、环太平洋、福音战士新剧场版：Q、守法公民、美丽心灵、万能钥匙、调音师。</p>
-<p>最后我要批评大众点评的评分机制，得分制也是五星，但中间值竟然是二星，即差——一般——好——很好——非常好。</p>
-<p>「差」这一星可不能有效区分「我吃到了苍蝇，激怒了我！」和「难吃」这两种评价；为了区分「好」、「很好」和「非常好」三种评价，按照二八定律，顾客需要先光顾二十五多种不同的商户，才能从中挑出五种达到「很好」的商户，以及仅一种达到「非常好」的商户。显然若顾客的消费经验不足，容易被这三种评价弄得手足无措，以致只能随便打分了事，没法有效科学区分。</p>
-<blockquote>
-<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
-</blockquote>
-
-	
-	</div>
-</div>
-
-           
-		
 
 		</div>
 
@@ -498,13 +506,13 @@
 <ul class="pagination">
 	 
 		
-          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
         
 
         <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
 
 		
-		   <li class="next"> <a href="/page/2/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
+		   <li class="next"> <a href="/page/2/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
         
 	
 </ul>
@@ -524,7 +532,7 @@
 			
   <div id="site_search">
    <div class="form-group">
-    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"/>
    </div>  
   <div id="local-search-result"></div>
   </div>
@@ -533,24 +541,26 @@
 		
 			
 	<div class="widget">
-		<h4>Tag Cloud</h4>
+		<h4>标签云</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span>2</span></a></li>
+			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
 		
 			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
 		
-			<li><a href="/tags/技术/">技术<span>6</span></a></li>
-		
-			<li><a href="/tags/公告/">公告<span>1</span></a></li>
-		
-			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
+			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
 		
 			<li><a href="/tags/Python/">Python<span>2</span></a></li>
 		
-			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
+			<li><a href="/tags/Linux/">Linux<span>1</span></a></li>
+		
+			<li><a href="/tags/技术/">技术<span>7</span></a></li>
+		
+			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
+		
+			<li><a href="/tags/公告/">公告<span>1</span></a></li>
+		
+			<li><a href="/tags/C/">C++<span>2</span></a></li>
 		
 		 
 		</ul>
@@ -570,7 +580,7 @@
   </div>
   <div class="container-narrow">
   <footer> <p>
-  &copy; 2017 Isaac Ge
+  &copy; 2018 Isaac Ge
   
       with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
 </p> </footer>
