@@ -135,9 +135,52 @@
 		
             
 		
+            
+		
         
         <!-- render other articles -->
         
+           
+			  
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2018 Jul 3 </div>
+			<div class="article-title"><a href="/我又双迁移到-NeoVim-了.html" >我又双迁移到 NeoVim 了</a></div>						
+		</h3>
+	
+
+
+			  <div class="entry">
+  <div class="row">
+	
+	
+		<p>两年前，我曾在技术博客发表过《用 Neovim 取代 Vim》，但当时我很快又放弃 NeoVim 了，继续用 Vim。因为我始终没找到令我满意的 NeoVim 的 GUI；再次，Ubuntu 16.04 没有打包 NeoVim，每次在新开发机上部署开发环境编译安装 NeoVim 也很麻烦；最后，Vim 7.5 也支持异步并发 API，以致我不太青睐 NeoVim 了。</p>
+<p>其实我之所以一定要用 GUI，因为我一直没真正配置好虚拟终端，终端多路复用器和文本编辑器的色彩，导致 Vim 在虚拟终端和多路复用器会话里显示的色彩非常怪异，所以我实际上过去一直只用 GVim，不爱用 Vim。一月半前，在机缘巧合的他人帮助下，我正确配置好了 Vim 的 256 color，以致以后不论在本地还是远程主机上，都可以直接在虚拟终端下愉快地用 Vim 开发了，这也间接地为后来的迁移大作战扫除了障碍。</p>
+<p>一月前，我偶然读到<a href="http://www.skywind.me/blog/archives/2084" target="_blank" rel="external">Vim 8 下 C/C++ 开发环境搭建</a>，里面介绍了众多令人叹为观止的现代 Vim 插件，有些需要在 NeoVim 上才能用。于是我心血来潮，又双迁移到 NeoVIm 了，并且迁移大作战成功！</p>
+<p>其间我发现 NeoVim 本身已经编译好了 Linux 上通用的二进制包，直接下载 <a href="https://github.com/neovim/neovim/releases/download/v0.3.0/nvim.appimage" target="_blank" rel="external">nvim.appimage</a>（版本为目前最新的 3.1）到 <code>$HOME/.local/bin</code> 并命名为你喜欢的即可，当然别忘了修改其为可执行文件。这样以后只要如此少量的命令，就可以快速在开发机上部署新开发环境了，毕竟不比安装发行版的 Vim 二进制包麻烦多少，何况 Ubuntu 16.04 发行版提供的二进制包 Vim 版本还处于 7.4 时代，老掉牙。</p>
+<p>我再重新解说下迁移到 NeoVim 的好处：</p>
+<h3 id="全面并发"><a href="#全面并发" class="headerlink" title="全面并发"></a>全面并发</h3><p>虽说 Vim 8 也支持了，但这当初应该是 NeoVim 倒逼 Vim 出来的，不可忽略。此外在全面并发的支持下，vim-plug 安装我高达三十多个的插件，不到半分钟！这可怕的速度在以前 Vim 时代是不可想象的。<a href="http://www.skywind.me/blog/archives/2084" target="_blank" rel="external">Vim 8 下 C/C++ 开发环境搭建</a> 里面提到的很多强大插件，也实实在在得到了全面的速度提升好处。</p>
+<h3 id="默认配置更加友好"><a href="#默认配置更加友好" class="headerlink" title="默认配置更加友好"></a>默认配置更加友好</h3><p>说起来 Vim 的一些过时默认配置会让你大吃一惊，比如它默认的 encoding 至今依然是 <code>latin1</code> ！Neovim 当然早改用 <code>utf-8</code> 了。还有[一些不合时宜的默认 setting 也纷纷得到了修改] Vim 8 下 C/C++ 开发环境搭建(<a href="https://neovim.io/doc/user/vim_diff.html#nvim-defaults)，免去用户手动配置之苦，我就在迁移原" target="_blank" rel="external">https://neovim.io/doc/user/vim_diff.html#nvim-defaults)，免去用户手动配置之苦，我就在迁移原</a> <code>.vimrc</code> 时删去了 25 行多，净化完毕，更加极简！</p>
+<h3 id="充分遵循-XDG-规范"><a href="#充分遵循-XDG-规范" class="headerlink" title="充分遵循 XDG 规范"></a>充分遵循 XDG 规范</h3><p>Vim 默认的  <code>.vimrc</code>  和  <code>.vim</code>  均一般在  <code>$HOME</code>  下，Neovim 则全挪为  <code>$XDG_CONFIG_HOME/nvim/init.vim</code>  和  <code>$XDG_CONFIG_HOME/nvim</code>.</p>
+<p>Vim 编辑文件时，可以有多达四个的数据文件：<code>backup</code>,  <code>swapfile</code>,  <code>undofile</code>  和  <code>viminfo</code>. Unix 下的 Vim 分别默认存在  <code>&quot;.,~/tmp,~/&quot;</code>,  <code>&quot;.,~/tmp,/var/tmp,/tmp&quot;</code>,  <code>&quot;.&quot;</code>, 其中  <code>viminfo</code>  的具体储存位置我一时还查不出来，就懒得深究了。后来依云指出：undofile 默认没有值，不保存撤销记录，viminfo 位于用户目录。</p>
+<p>NeoVim 则全改储存在  <code>$XDG_DATA_HOME/nvim/</code>  下各自的目录里，此外 viminfo 更是被抛弃，被叫 ShaDa 且更为先进的二进制文件所代替，后者位于  <code>$XDG_DATA_HOME/nvim/shada/main.shada</code>.</p>
+<p>再加上用户自行安装的 NeoVim 二进制包也在 <code>$HOME/.local/bin</code> 里，一家人更加整整齐齐。</p>
+<h3 id="完美无瑕的真彩"><a href="#完美无瑕的真彩" class="headerlink" title="完美无瑕的真彩"></a>完美无瑕的真彩</h3><p>具体详见<a href="http://blog.acgtyrant.com/%E5%9C%A8-Linux-%E4%B8%8B%E5%85%A8%E9%9D%A2%E4%BD%BF%E7%94%A8%E7%9C%9F%E5%BD%A9.html">在 Linux 下全面使用真彩</a>。</p>
+<p><img src="images/neovim.png" alt="看！我的括号会发光！"></p>
+<h2 id="那么问题来了：怎么迁移？"><a href="#那么问题来了：怎么迁移？" class="headerlink" title="那么问题来了：怎么迁移？"></a>那么问题来了：怎么迁移？</h2><p>Arch Linux 用户都装  <code>neovim</code>,  <code>python-neovim</code>  和  <code>python2-neovim</code>. Ubuntu 用户下载官方编译好的二进制包并更改为 <code>$HOME/.local/bin</code> 的可执行文件。</p>
+<p>除非你用干净的  <a href="http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html" target="_blank" rel="external">dotfiles</a>  管理 Vim, 否则自行清理插件；<a href="http://www.adamwadeharris.com/how-to-switch-from-vim-to-neovim/" target="_blank" rel="external">再迁移到 XDG 目录下</a>；改用支持 Neovim 的  <a href="https://github.com/junegunn/vim-plug" target="_blank" rel="external">vim-plug</a>  并重新安装所有插件，可以先按 <a href="vim-plug/automatic-installation">https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+</a> 加入相关代码，以致只要一打开 NeoVim 它就会自动安装包管理器本身和所有包，超方便的；按  <a href="https://neovim.io/doc/user/vim_diff.html" target="_blank" rel="external">vim-difference</a>  来打扫  <code>init.vim</code>  中已无用的设置。</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
+</blockquote>
+
+	
+	</div>
+</div>
+
+           
+		
            
 			  
 	
@@ -461,41 +504,6 @@
 
            
 		
-           
-			  
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017 Aug 29 </div>
-			<div class="article-title"><a href="/如何跟进深度学习的研究前沿？.html" >如何跟进深度学习的研究前沿？</a></div>						
-		</h3>
-	
-
-
-			  <div class="entry">
-  <div class="row">
-	
-	
-		<h2 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h2><p>一开始没必要就读论文，而是通过 cs231n, deep learning 等教程打好基础。其实由于深度学习这领域刚发展起来，所以 CS213n 给了不少论文的对应关键词，比如 AlexNet, VGGNet, ZFNet, GoogLeNet, ResNet 等等。可以从这相当基本的论文开始读，如果作为本科生且没有接受过学术训练，花一周以上才免强读懂一篇论文也不奇怪，但读多了就越来越快，我现在刚两小时略读完一篇论文，如果是很水的论文大概可能在半小时就全读完。</p>
-<p>如果很难读懂论文，可以先搜搜别人的论文笔记（当然是中文），来源经常包括 CSDN 博客，简书，知乎问答，知乎专栏甚至个人博客等等，我都订阅了它们的 RSS, 其中知乎专栏可以直接用 Inoreader 订阅。</p>
-<h2 id="用-Zotero-管理论文"><a href="#用-Zotero-管理论文" class="headerlink" title="用 Zotero 管理论文"></a>用 Zotero 管理论文</h2><p>我用 Zotero 管理论文，它有三个优势：可以通过浏览器插件在相关网页上（比如 arXiv, Google Scorlar, Microsoft Research 等等）一键收录论文到 Zotero; 可以在论文条目下写笔记；论文分类、归档、排序十分方便。怎么用 Zotero 管理网上满是教程，我就不赘述了，我只给大家看看我的分类树以及时间排序界面：</p>
-<p><img src="images/zotero.png" alt="Zotero 界面"></p>
-<p>于是读的论文可以按时间和重要性排序递增，顺便一提，分类树随时要修改以符合你当前心中的最佳分类，比如我以前把 AlexNet, VGGNet, ZFNet, GoogLeNet, ResNet 等都是放到「年度论文」的，但现在我把它们改移到「网络结构」里了，同时该分类还有 Network in Network, Highway Networks 等等；此外我曾经有个分类「奇技淫巧」，旗下又有「训练算法」，「防过拟合」，「权重初始化」和「激活函数」等等，但我最近嫌分类太散乱，于是又花了点时间苦思冥想，终于想出更合适的分类「优化理论」，我便取消「奇技淫巧」这分类，把大部分论文都归档到这新分类。</p>
-<h2 id="收集论文、开始跟进研究前沿"><a href="#收集论文、开始跟进研究前沿" class="headerlink" title="收集论文、开始跟进研究前沿"></a>收集论文、开始跟进研究前沿</h2><p>读论文多了，你就会越来越熟悉你所从事领域的学术大牛，比如物体检测的 Ross Girshick, 语义识别的 Jifeng Dai, 对抗学习的 Goodfellow 等等。这时可以直接在 Google Scholar 的学术用户页面上关注他们的新文章，这样可以在第一时间收到他们发表论文的最新动态。或者干脆天天刷 arxiv 也可以，当初 Focal Loss 那篇论文我晚了好几天才收到 Google 快讯，而别人早在知乎相关问题讨论起来了，一问才知道他们习惯天天刷 arxiv, 可惜我连 Zotero 里的论文都没读完，更别说天天刷新论文了。</p>
-<p>在知乎上也可以关注顶级会议、学术竞赛的相关问题，比如 <a href="https://www.zhihu.com/question/57523080" target="_blank" rel="external">CVPR 2017 有什么值得关注的亮点?</a> 和 <a href="https://www.zhihu.com/question/51024166" target="_blank" rel="external">如何评价ILSVRC2016的比赛结果？</a> 上面会有别人帮你总结好的答案，直接按图索骥即可。</p>
-<p>也可以直接去学术竞赛看天梯排名，看看当前战斗力最强的模型对应的论文是啥，扒下来读，比如 <a href="http://host.robots.ox.ac.uk:8080/leaderboard/displaylb.php?challengeid=11&amp;compid=6" target="_blank" rel="external">PASCAL VOC 2012 Segmentation Competition</a> 当前的首席 <a href="https://arxiv.org/abs/1706.05587" target="_blank" rel="external">DeepLabv3</a> 和第五席 <a href="https://arxiv.org/abs/1612.01105" target="_blank" rel="external">PSPNet</a>.</p>
-<p>如果打算专心用 PyTorch 做研究，可以<a href="https://stackoverflow.com/questions/7353538/setting-up-an-github-commit-rss-feed" target="_blank" rel="external">订阅</a> awesome-pytorch 的 <a href="https://github.com/rickiepark/awesome-pytorch/commits/master.atom" target="_blank" rel="external">RSS</a>, 对其他 GitHub 上的<a href="https://github.com/jtoy/awesome-tensorflow" target="_blank" rel="external">类似 awesome 项目</a>也可如法炮制。</p>
-<p>最后，若有人能带你就更好，比如导师会收集论文并传给学生，据我所知商汤他们每周有论文分享会，以跟进论文最新前沿。</p>
-<blockquote>
-<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
-</blockquote>
-
-	
-	</div>
-</div>
-
-           
-		
 
 		</div>
 
@@ -506,13 +514,13 @@
 <ul class="pagination">
 	 
 		
-          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Anterior</a></li>
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
         
 
         <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
 
 		
-		   <li class="next"> <a href="/page/2/" class="alignright next">Próximo<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
+		   <li class="next"> <a href="/page/2/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
         
 	
 </ul>
@@ -532,7 +540,7 @@
 			
   <div id="site_search">
    <div class="form-group">
-    <input type="text" id="local-search-input" name="q" results="0" placeholder="Busca" class="st-search-input st-default-search-input form-control"/>
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
    </div>  
   <div id="local-search-result"></div>
   </div>
@@ -544,23 +552,23 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
+		
+			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
+		
 			<li><a href="/tags/Linux/">Linux<span>1</span></a></li>
+		
+			<li><a href="/tags/技术/">技术<span>8</span></a></li>
+		
+			<li><a href="/tags/C/">C++<span>2</span></a></li>
 		
 			<li><a href="/tags/Python/">Python<span>2</span></a></li>
 		
 			<li><a href="/tags/公告/">公告<span>1</span></a></li>
 		
-			<li><a href="/tags/C/">C++<span>2</span></a></li>
-		
-			<li><a href="/tags/技术/">技术<span>7</span></a></li>
-		
-			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
-		
-			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
-		
 			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
 		
-			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
+			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
 		
 		 
 		</ul>
