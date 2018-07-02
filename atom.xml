@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.acgtyrant.com/"/>
-  <updated>2018-07-02T23:40:28.440Z</updated>
+  <updated>2018-07-02T23:56:12.577Z</updated>
   <id>http://blog.acgtyrant.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.acgtyrant.com/%E6%88%91%E5%8F%88%E5%8F%8C%E8%BF%81%E7%A7%BB%E5%88%B0-NeoVim-%E4%BA%86.html"/>
     <id>http://blog.acgtyrant.com/我又双迁移到-NeoVim-了.html</id>
     <published>2018-07-02T23:34:27.000Z</published>
-    <updated>2018-07-02T23:40:28.440Z</updated>
+    <updated>2018-07-02T23:56:12.577Z</updated>
     
     <content type="html"><![CDATA[<p>两年前，我曾在技术博客发表过《用 Neovim 取代 Vim》，但当时我很快又放弃 NeoVim 了，继续用 Vim。因为我始终没找到令我满意的 NeoVim 的 GUI；再次，Ubuntu 16.04 没有打包 NeoVim，每次在新开发机上部署开发环境编译安装 NeoVim 也很麻烦；最后，Vim 7.5 也支持异步并发 API，以致我不太青睐 NeoVim 了。</p>
 <p>其实我之所以一定要用 GUI，因为我一直没真正配置好虚拟终端，终端多路复用器和文本编辑器的色彩，导致 Vim 在虚拟终端和多路复用器会话里显示的色彩非常怪异，所以我实际上过去一直只用 GVim，不爱用 Vim。一月半前，在机缘巧合的他人帮助下，我正确配置好了 Vim 的 256 color，以致以后不论在本地还是远程主机上，都可以直接在虚拟终端下愉快地用 Vim 开发了，这也间接地为后来的迁移大作战扫除了障碍。</p>
@@ -28,7 +28,7 @@
 <p>其间我发现 NeoVim 本身已经编译好了 Linux 上通用的二进制包，直接下载 <a href="https://github.com/neovim/neovim/releases/download/v0.3.0/nvim.appimage" target="_blank" rel="external">nvim.appimage</a>（版本为目前最新的 3.1）到 <code>$HOME/.local/bin</code> 并命名为你喜欢的即可，当然别忘了修改其为可执行文件。这样以后只要如此少量的命令，就可以快速在开发机上部署新开发环境了，毕竟不比安装发行版的 Vim 二进制包麻烦多少，何况 Ubuntu 16.04 发行版提供的二进制包 Vim 版本还处于 7.4 时代，老掉牙。</p>
 <p>我再重新解说下迁移到 NeoVim 的好处：</p>
 <h3 id="全面并发"><a href="#全面并发" class="headerlink" title="全面并发"></a>全面并发</h3><p>虽说 Vim 8 也支持了，但这当初应该是 NeoVim 倒逼 Vim 出来的，不可忽略。此外在全面并发的支持下，vim-plug 安装我高达三十多个的插件，不到半分钟！这可怕的速度在以前 Vim 时代是不可想象的。<a href="http://www.skywind.me/blog/archives/2084" target="_blank" rel="external">Vim 8 下 C/C++ 开发环境搭建</a> 里面提到的很多强大插件，也实实在在得到了全面的速度提升好处。</p>
-<h3 id="默认配置更加友好"><a href="#默认配置更加友好" class="headerlink" title="默认配置更加友好"></a>默认配置更加友好</h3><p>说起来 Vim 的一些过时默认配置会让你大吃一惊，比如它默认的 encoding 至今依然是 <code>latin1</code> ！Neovim 当然早改用 <code>utf-8</code> 了。还有[一些不合时宜的默认 setting 也纷纷得到了修改] Vim 8 下 C/C++ 开发环境搭建(<a href="https://neovim.io/doc/user/vim_diff.html#nvim-defaults)，免去用户手动配置之苦，我就在迁移原" target="_blank" rel="external">https://neovim.io/doc/user/vim_diff.html#nvim-defaults)，免去用户手动配置之苦，我就在迁移原</a> <code>.vimrc</code> 时删去了 25 行多，净化完毕，更加极简！</p>
+<h3 id="默认配置更加友好"><a href="#默认配置更加友好" class="headerlink" title="默认配置更加友好"></a>默认配置更加友好</h3><p>说起来 Vim 的一些过时默认配置会让你大吃一惊，比如它默认的 encoding 至今依然是 <code>latin1</code> ！Neovim 当然早改用 <code>utf-8</code> 了。还有<a href="https://neovim.io/doc/user/vim_diff.html#nvim-defaults" target="_blank" rel="external">一些不合时宜的默认 setting 也纷纷得到了修改</a>，免去用户手动配置之苦，我就在迁移原 <code>.vimrc</code> 时删去了 25 行多，净化完毕，更加极简！</p>
 <h3 id="充分遵循-XDG-规范"><a href="#充分遵循-XDG-规范" class="headerlink" title="充分遵循 XDG 规范"></a>充分遵循 XDG 规范</h3><p>Vim 默认的  <code>.vimrc</code>  和  <code>.vim</code>  均一般在  <code>$HOME</code>  下，Neovim 则全挪为  <code>$XDG_CONFIG_HOME/nvim/init.vim</code>  和  <code>$XDG_CONFIG_HOME/nvim</code>.</p>
 <p>Vim 编辑文件时，可以有多达四个的数据文件：<code>backup</code>,  <code>swapfile</code>,  <code>undofile</code>  和  <code>viminfo</code>. Unix 下的 Vim 分别默认存在  <code>&quot;.,~/tmp,~/&quot;</code>,  <code>&quot;.,~/tmp,/var/tmp,/tmp&quot;</code>,  <code>&quot;.&quot;</code>, 其中  <code>viminfo</code>  的具体储存位置我一时还查不出来，就懒得深究了。后来依云指出：undofile 默认没有值，不保存撤销记录，viminfo 位于用户目录。</p>
 <p>NeoVim 则全改储存在  <code>$XDG_DATA_HOME/nvim/</code>  下各自的目录里，此外 viminfo 更是被抛弃，被叫 ShaDa 且更为先进的二进制文件所代替，后者位于  <code>$XDG_DATA_HOME/nvim/shada/main.shada</code>.</p>
@@ -249,9 +249,9 @@
     </summary>
     
     
-      <category term="编程规范" scheme="http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
-    
       <category term="技术" scheme="http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="编程规范" scheme="http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
     
   </entry>
   
@@ -280,9 +280,9 @@
     </summary>
     
     
-      <category term="编程规范" scheme="http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
-    
       <category term="技术" scheme="http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="编程规范" scheme="http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
     
       <category term="Python" scheme="http://blog.acgtyrant.com/tags/Python/"/>
     
@@ -318,9 +318,9 @@
     </summary>
     
     
-      <category term="编程规范" scheme="http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
-    
       <category term="C++" scheme="http://blog.acgtyrant.com/tags/C/"/>
+    
+      <category term="编程规范" scheme="http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
     
   </entry>
   
@@ -348,9 +348,9 @@
     </summary>
     
     
-      <category term="编程规范" scheme="http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
-    
       <category term="技术" scheme="http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="编程规范" scheme="http://blog.acgtyrant.com/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"/>
     
   </entry>
   
@@ -376,9 +376,9 @@
     </summary>
     
     
-      <category term="C++" scheme="http://blog.acgtyrant.com/tags/C/"/>
-    
       <category term="技术" scheme="http://blog.acgtyrant.com/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="C++" scheme="http://blog.acgtyrant.com/tags/C/"/>
     
   </entry>
   

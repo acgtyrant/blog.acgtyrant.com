@@ -161,7 +161,7 @@
 <p>其间我发现 NeoVim 本身已经编译好了 Linux 上通用的二进制包，直接下载 <a href="https://github.com/neovim/neovim/releases/download/v0.3.0/nvim.appimage" target="_blank" rel="external">nvim.appimage</a>（版本为目前最新的 3.1）到 <code>$HOME/.local/bin</code> 并命名为你喜欢的即可，当然别忘了修改其为可执行文件。这样以后只要如此少量的命令，就可以快速在开发机上部署新开发环境了，毕竟不比安装发行版的 Vim 二进制包麻烦多少，何况 Ubuntu 16.04 发行版提供的二进制包 Vim 版本还处于 7.4 时代，老掉牙。</p>
 <p>我再重新解说下迁移到 NeoVim 的好处：</p>
 <h3 id="全面并发"><a href="#全面并发" class="headerlink" title="全面并发"></a>全面并发</h3><p>虽说 Vim 8 也支持了，但这当初应该是 NeoVim 倒逼 Vim 出来的，不可忽略。此外在全面并发的支持下，vim-plug 安装我高达三十多个的插件，不到半分钟！这可怕的速度在以前 Vim 时代是不可想象的。<a href="http://www.skywind.me/blog/archives/2084" target="_blank" rel="external">Vim 8 下 C/C++ 开发环境搭建</a> 里面提到的很多强大插件，也实实在在得到了全面的速度提升好处。</p>
-<h3 id="默认配置更加友好"><a href="#默认配置更加友好" class="headerlink" title="默认配置更加友好"></a>默认配置更加友好</h3><p>说起来 Vim 的一些过时默认配置会让你大吃一惊，比如它默认的 encoding 至今依然是 <code>latin1</code> ！Neovim 当然早改用 <code>utf-8</code> 了。还有[一些不合时宜的默认 setting 也纷纷得到了修改] Vim 8 下 C/C++ 开发环境搭建(<a href="https://neovim.io/doc/user/vim_diff.html#nvim-defaults)，免去用户手动配置之苦，我就在迁移原" target="_blank" rel="external">https://neovim.io/doc/user/vim_diff.html#nvim-defaults)，免去用户手动配置之苦，我就在迁移原</a> <code>.vimrc</code> 时删去了 25 行多，净化完毕，更加极简！</p>
+<h3 id="默认配置更加友好"><a href="#默认配置更加友好" class="headerlink" title="默认配置更加友好"></a>默认配置更加友好</h3><p>说起来 Vim 的一些过时默认配置会让你大吃一惊，比如它默认的 encoding 至今依然是 <code>latin1</code> ！Neovim 当然早改用 <code>utf-8</code> 了。还有<a href="https://neovim.io/doc/user/vim_diff.html#nvim-defaults" target="_blank" rel="external">一些不合时宜的默认 setting 也纷纷得到了修改</a>，免去用户手动配置之苦，我就在迁移原 <code>.vimrc</code> 时删去了 25 行多，净化完毕，更加极简！</p>
 <h3 id="充分遵循-XDG-规范"><a href="#充分遵循-XDG-规范" class="headerlink" title="充分遵循 XDG 规范"></a>充分遵循 XDG 规范</h3><p>Vim 默认的  <code>.vimrc</code>  和  <code>.vim</code>  均一般在  <code>$HOME</code>  下，Neovim 则全挪为  <code>$XDG_CONFIG_HOME/nvim/init.vim</code>  和  <code>$XDG_CONFIG_HOME/nvim</code>.</p>
 <p>Vim 编辑文件时，可以有多达四个的数据文件：<code>backup</code>,  <code>swapfile</code>,  <code>undofile</code>  和  <code>viminfo</code>. Unix 下的 Vim 分别默认存在  <code>&quot;.,~/tmp,~/&quot;</code>,  <code>&quot;.,~/tmp,/var/tmp,/tmp&quot;</code>,  <code>&quot;.&quot;</code>, 其中  <code>viminfo</code>  的具体储存位置我一时还查不出来，就懒得深究了。后来依云指出：undofile 默认没有值，不保存撤销记录，viminfo 位于用户目录。</p>
 <p>NeoVim 则全改储存在  <code>$XDG_DATA_HOME/nvim/</code>  下各自的目录里，此外 viminfo 更是被抛弃，被叫 ShaDa 且更为先进的二进制文件所代替，后者位于  <code>$XDG_DATA_HOME/nvim/shada/main.shada</code>.</p>
@@ -552,23 +552,23 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
+			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
 		
 			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
 		
-			<li><a href="/tags/Linux/">Linux<span>1</span></a></li>
-		
-			<li><a href="/tags/技术/">技术<span>8</span></a></li>
-		
 			<li><a href="/tags/C/">C++<span>2</span></a></li>
 		
-			<li><a href="/tags/Python/">Python<span>2</span></a></li>
+			<li><a href="/tags/Linux/">Linux<span>1</span></a></li>
 		
 			<li><a href="/tags/公告/">公告<span>1</span></a></li>
 		
+			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
+		
 			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
 		
-			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
+			<li><a href="/tags/Python/">Python<span>2</span></a></li>
+		
+			<li><a href="/tags/技术/">技术<span>8</span></a></li>
 		
 		 
 		</ul>
