@@ -25,18 +25,18 @@
 </li>
 </ul>
 <h1 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h1><p>开始整理并归档御用程序如何使用剪贴板的解决方案。</p>
-<h2 id="御用剪贴板交互命令・-xclip"><a href="#御用剪贴板交互命令・-xclip" class="headerlink" title="御用剪贴板交互命令・ xclip"></a>御用剪贴板交互命令・ xclip</h2><p>除了用程序本身的复制粘贴键、鼠标选中复制与中键粘贴行为，其实也有现成的命令，能在 Shell 里与Ｘ剪贴板互动。最常见的有两个命令： <a href="https://askubuntu.com/questions/705620/xclip-vs-xsel" target="_blank" rel="external">‘xclip’ vs. ‘xsel’</a></p>
+<h2 id="御用剪贴板交互命令・xclip"><a href="#御用剪贴板交互命令・xclip" class="headerlink" title="御用剪贴板交互命令・xclip"></a>御用剪贴板交互命令・xclip</h2><p>除了用程序本身的复制粘贴键、鼠标选中复制与中键粘贴行为，其实也有现成的命令，能在 Shell 里与Ｘ剪贴板互动。最常见的有两个命令： <a href="https://askubuntu.com/questions/705620/xclip-vs-xsel" target="_blank" rel="external">‘xclip’ vs. ‘xsel’</a></p>
 <p>由于 xsel 已经两年没更新了，而且 GitHub 官方帮助又钦定 xclip，再加上 xclip 比 xsel 顺耳许多了。我决定 xclip 作为御用剪贴板交互命令。</p>
 <p>xclip 默认复制进 primary，坑。</p>
-<h2 id="御用虚拟终端・-Terminate"><a href="#御用虚拟终端・-Terminate" class="headerlink" title="御用虚拟终端・ Terminate"></a>御用虚拟终端・ Terminate</h2><p><a href="https://wiki.archlinux.org/index.php/Termite" target="_blank" rel="external">https://wiki.archlinux.org/index.php/Termite</a></p>
+<h2 id="御用虚拟终端・Termite"><a href="#御用虚拟终端・Termite" class="headerlink" title="御用虚拟终端・Termite"></a>御用虚拟终端・Termite</h2><p><a href="https://wiki.archlinux.org/index.php/Termite" target="_blank" rel="external">https://wiki.archlinux.org/index.php/Termite</a></p>
 <p>Termite 像 Vim，有两种模式：Insert 和 Selection。</p>
 <p>Insert 模式下，可以直接用鼠标选中内容，但它的行为和 Vim 不一样：仍然处于 Insert 模式！用户可以一边选中内容，一边输入内容。由于虚拟终端和 Shell 紧密相关，不能直接用 <code>ctrl+c/ctrl+v</code>，只能用 <code>ctrl+shift+c/ctrl+shift+v</code> 代替复制粘贴。</p>
 <p>按 <code>ctrl+shift+space</code> 可以进入 selection 模式，行为和 Vim 一样，不赘述。</p>
 <p>复制会复制到Ｘ剪贴板，我测试了下发现包括 clipboard.</p>
 <p>由于我习惯用 Tmux，Termite 的复制粘贴功能其实不重要，无需记忆。不过，我发现 <strong>Termite 的 <code>ctrl+shift+v</code> 在 Tmux 一样有效</strong> ！</p>
-<h2 id="御用网络传输协议・-SSH"><a href="#御用网络传输协议・-SSH" class="headerlink" title="御用网络传输协议・ SSH"></a>御用网络传输协议・ SSH</h2><p>既然剪贴板由Ｘ负责，那么我们需要 SSH 能够转发远程主机上的Ｘ程序到本地上，从而让远程主机能与本地的剪贴板互动。信任远程主机的话，<code>alias ssh=&#39;ssh -Y&#39;</code> 即可。</p>
+<h2 id="御用网络传输协议・SSH"><a href="#御用网络传输协议・SSH" class="headerlink" title="御用网络传输协议・SSH"></a>御用网络传输协议・SSH</h2><p>既然剪贴板由Ｘ负责，那么我们需要 SSH 能够转发远程主机上的Ｘ程序到本地上，从而让远程主机能与本地的剪贴板互动。信任远程主机的话，<code>alias ssh=&#39;ssh -Y&#39;</code> 即可。</p>
 <p>实践证明，我 SSH 到远程主机并开启 Tmux 后，<strong>我可以把 clipboard 的东西通过 Termite 的 <code>ctrl+shifht+v</code> 粘贴进该 Tmux Session 的某 pane 里。</strong></p>
-<h2 id="御用终端多路复用器・-Tmux"><a href="#御用终端多路复用器・-Tmux" class="headerlink" title="御用终端多路复用器・ Tmux"></a>御用终端多路复用器・ Tmux</h2><p>由于 Termite 的复制粘贴直接作用于整个虚拟终端的界面上，不分 Tmux 里的 pane，于是需要掌握 Tmux 下能在 pane 复制粘贴行为。</p>
+<h2 id="御用终端多路复用器・Tmux"><a href="#御用终端多路复用器・Tmux" class="headerlink" title="御用终端多路复用器・Tmux"></a>御用终端多路复用器・Tmux</h2><p>由于 Termite 的复制粘贴直接作用于整个虚拟终端的界面上，不分 Tmux 里的 pane，于是需要掌握 Tmux 下能在 pane 复制粘贴行为。</p>
 <p>Tmux 也有两种模式。一是常规模式，即用户在 pane 里的行为和单个虚拟终端一样；另一是 copy-mode，为能够在 pane 下滚动历史或复制而服务，其又有两种 binding，一是 Emacs 另一是 Vim，默认用 Emacs binding。</p>
 <p>我习惯 vim-like 步骤与行为，自然要重新设置为 Vim Binding： <code>set-window-option -g mode-keys vi</code>。</p>
 <p>此外 Tmux 2.4 有重新定义 Key Binding 语法，本文不考虑 Tmux 2.4 之前的旧 Key Binding 语法。</p>
@@ -47,7 +47,7 @@
 <p>更进一步地像 Vim 那样能滚动浏览 pane 的历史：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># scroll like vim</div><div class="line"></div><div class="line">bind-key -T copy-mode-vi f send-keys page-down</div><div class="line"></div><div class="line">bind-key -T copy-mode-vi b send-keys page-up</div><div class="line"></div><div class="line">bind-key -T copy-mode-vi d send-keys halfpage-down</div><div class="line"></div><div class="line">bind-key -T copy-mode-vi u send-keys halfpage-up</div></pre></td></tr></table></figure>
 <p>其实本来还可以加 <code>bind-key p run &quot;xclip -o -sel clip | tmux load-buffer - ; tmux paste-buffer&quot;</code>，不过还是 <code>ctrl+shift+v</code> 粘贴更方便，就不加了。</p>
-<h2 id="御用文本编辑器・-NeoVim"><a href="#御用文本编辑器・-NeoVim" class="headerlink" title="御用文本编辑器・ NeoVim"></a>御用文本编辑器・ NeoVim</h2><p>Vim 要有开启 clipboard 编译选项，才支持剪贴板（大概）。据说 Arch Linux 的 vim 就没开启！只能改装 gvim 包了。</p>
+<h2 id="御用文本编辑器・NeoVim"><a href="#御用文本编辑器・NeoVim" class="headerlink" title="御用文本编辑器・NeoVim"></a>御用文本编辑器・NeoVim</h2><p>Vim 要有开启 clipboard 编译选项，才支持剪贴板（大概）。据说 Arch Linux 的 vim 就没开启！只能改装 gvim 包了。</p>
 <p>好在 NeoVim 支持，但需要额外的依赖，<code>help clipboard</code> 指出：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">The presence of a working clipboard tool implicitly enables the &apos;+&apos; and &apos;*&apos;</div><div class="line"></div><div class="line">registers. Nvim looks for these clipboard tools, in order of priority:</div><div class="line"></div><div class="line">- |g:clipboard|</div><div class="line"></div><div class="line">- pbcopy/pbpaste (macOS)</div><div class="line"></div><div class="line">- xsel (if $DISPLAY is set)</div><div class="line"></div><div class="line">- xclip (if $DISPLAY is set)</div><div class="line"></div><div class="line">- lemonade (for SSH) https://github.com/pocke/lemonade</div><div class="line"></div><div class="line">- doitclient (for SSH) http://www.chiark.greenend.org.uk/~sgtatham/doit/</div><div class="line"></div><div class="line">- win32yank (Windows)</div><div class="line"></div><div class="line">- tmux (if $TMUX is set)</div></pre></td></tr></table></figure>
 <p>显然装 xclip 就行了。</p>
