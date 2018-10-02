@@ -162,7 +162,7 @@
 <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><ul>
 <li><p><a href="https://wiki.archlinux.org/index.php/Clipboard" target="_blank" rel="external">https://wiki.archlinux.org/index.php/Clipboard</a></p>
 </li>
-<li><p><a href="[https://blog.lilydjwg.me/2013/11/24/clipboards-in-x-window.41800.html](https://blog.lilydjwg.me/2013/11/24/clipboards-in-x-window.41800.html">X Window 中的剪贴板</a>)</p>
+<li><p><a href="https://blog.lilydjwg.me/2013/11/24/clipboards-in-x-window.41800.html" target="_blank" rel="external">X Window 中的剪贴板</a></p>
 </li>
 </ul>
 <p>按这两篇的说法，所谓两种剪贴板 Clipboard 和 Primary selection 都是Ｘ的功能。区别是前者用 Windows 那样的复制粘贴键 <code>ctrl+c/ctrl+v</code>，后者只需选中内容，就可以在别的地方用鼠标中键粘贴。还有 <code>shift+insert</code> 能起到 <code>ctrl+v</code> 的作用，但这键太冷门了就不记了。</p>
@@ -176,7 +176,7 @@
 </li>
 </ul>
 <h1 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h1><p>开始整理并归档御用程序如何使用剪贴板的解决方案。</p>
-<h2 id="御用剪贴板交互命令・-xclip"><a href="#御用剪贴板交互命令・-xclip" class="headerlink" title="御用剪贴板交互命令・ xclip"></a>御用剪贴板交互命令・ xclip</h2><p>除了用程序本身的复制粘贴键、鼠标选中复制与中键粘贴行为，其实也有现成的命令，能在 Shell 里与Ｘ剪贴板互动。最常见的有两个命令： <a href="[https://askubuntu.com/questions/705620/xclip-vs-xsel](https://askubuntu.com/questions/705620/xclip-vs-xsel">‘xclip’ vs. ‘xsel’</a>)</p>
+<h2 id="御用剪贴板交互命令・-xclip"><a href="#御用剪贴板交互命令・-xclip" class="headerlink" title="御用剪贴板交互命令・ xclip"></a>御用剪贴板交互命令・ xclip</h2><p>除了用程序本身的复制粘贴键、鼠标选中复制与中键粘贴行为，其实也有现成的命令，能在 Shell 里与Ｘ剪贴板互动。最常见的有两个命令： <a href="https://askubuntu.com/questions/705620/xclip-vs-xsel" target="_blank" rel="external">‘xclip’ vs. ‘xsel’</a></p>
 <p>由于 xsel 已经两年没更新了，而且 GitHub 官方帮助又钦定 xclip，再加上 xclip 比 xsel 顺耳许多了。我决定 xclip 作为御用剪贴板交互命令。</p>
 <p>xclip 默认复制进 primary，坑。</p>
 <h2 id="御用虚拟终端・-Terminate"><a href="#御用虚拟终端・-Terminate" class="headerlink" title="御用虚拟终端・ Terminate"></a>御用虚拟终端・ Terminate</h2><p><a href="https://wiki.archlinux.org/index.php/Termite" target="_blank" rel="external">https://wiki.archlinux.org/index.php/Termite</a></p>
@@ -200,12 +200,12 @@
 <p>其实本来还可以加 <code>bind-key p run &quot;xclip -o -sel clip | tmux load-buffer - ; tmux paste-buffer&quot;</code>，不过还是 <code>ctrl+shift+v</code> 粘贴更方便，就不加了。</p>
 <h2 id="御用文本编辑器・-NeoVim"><a href="#御用文本编辑器・-NeoVim" class="headerlink" title="御用文本编辑器・ NeoVim"></a>御用文本编辑器・ NeoVim</h2><p>Vim 要有开启 clipboard 编译选项，才支持剪贴板（大概）。据说 Arch Linux 的 vim 就没开启！只能改装 gvim 包了。</p>
 <p>好在 NeoVim 支持，但需要额外的依赖，<code>help clipboard</code> 指出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">The presence of a working clipboard tool implicitly enables the &apos;+&apos; and &apos;*&apos;</div><div class="line"></div><div class="line">registers. Nvim looks for these clipboard tools, in order of priority:</div><div class="line"></div><div class="line">- |g:clipboard|</div><div class="line"></div><div class="line">- pbcopy/pbpaste (macOS)</div><div class="line"></div><div class="line">- xsel (if $DISPLAY is set)</div><div class="line"></div><div class="line">- xclip (if $DISPLAY is set)</div><div class="line"></div><div class="line">- lemonade (for SSH) [https://github.com/pocke/lemonade](https://github.com/pocke/lemonade)</div><div class="line"></div><div class="line">- doitclient (for SSH) [http://www.chiark.greenend.org.uk/~sgtatham/doit/](http://www.chiark.greenend.org.uk/~sgtatham/doit/)</div><div class="line"></div><div class="line">- win32yank (Windows)</div><div class="line"></div><div class="line">- tmux (if $TMUX is set)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">The presence of a working clipboard tool implicitly enables the &apos;+&apos; and &apos;*&apos;</div><div class="line"></div><div class="line">registers. Nvim looks for these clipboard tools, in order of priority:</div><div class="line"></div><div class="line">- |g:clipboard|</div><div class="line"></div><div class="line">- pbcopy/pbpaste (macOS)</div><div class="line"></div><div class="line">- xsel (if $DISPLAY is set)</div><div class="line"></div><div class="line">- xclip (if $DISPLAY is set)</div><div class="line"></div><div class="line">- lemonade (for SSH) https://github.com/pocke/lemonade</div><div class="line"></div><div class="line">- doitclient (for SSH) http://www.chiark.greenend.org.uk/~sgtatham/doit/</div><div class="line"></div><div class="line">- win32yank (Windows)</div><div class="line"></div><div class="line">- tmux (if $TMUX is set)</div></pre></td></tr></table></figure>
 <p>显然装 xclip 就行了。</p>
 <p>Vim 默认 VISUAL 选中内容不会复制进 primary，这样正好，毕竟 Vim 重在编辑。可以通过 <code>shift+&quot;+y</code> 复制进 clipboard。</p>
-<p>至于到底怎么复制粘贴，看 <a href="[https://stackoverflow.com/questions/11489428/how-to-make-vim-paste-from-and-copy-to-systems-clipboard](https://stackoverflow.com/questions/11489428/how-to-make-vim-paste-from-and-copy-to-systems-clipboard">How to make vim paste from (and copy to) system’s clipboard?</a>) 就够了。</p>
+<p>至于到底怎么复制粘贴，看 <a href="https://stackoverflow.com/questions/11489428/how-to-make-vim-paste-from-and-copy-to-systems-clipboard" target="_blank" rel="external">How to make vim paste from (and copy to) system’s clipboard?</a> 就够了。</p>
 <p>最后，如何在 SSH 到远程主机再 Tmux 后再开 NeoVim，如何复制粘贴到本地？简单，<code>ssh -Y</code>，本地和远程主机都装 xclip，跟平常一样复制粘贴。</p>
-<h2 id="御用剪贴板管理器・Flicx-Clipboard"><a href="#御用剪贴板管理器・Flicx-Clipboard" class="headerlink" title="御用剪贴板管理器・Flicx Clipboard"></a>御用剪贴板管理器・Flicx Clipboard</h2><p>参见 <a href="[https://www.csslayer.info/wordpress/fcitx-dev/fcitx-clipboard/">Fcitx Clipboard</a>](<a href="https://www.csslayer.info/wordpress/fcitx-dev/fcitx-clipboard/))，在其插件的高级设置里可以把" target="_blank" rel="external">https://www.csslayer.info/wordpress/fcitx-dev/fcitx-clipboard/))，在其插件的高级设置里可以把</a> primary text 关掉。作为剪贴板管理器已经足够好用了。</p>
+<h2 id="御用剪贴板管理器・Flicx-Clipboard"><a href="#御用剪贴板管理器・Flicx-Clipboard" class="headerlink" title="御用剪贴板管理器・Flicx Clipboard"></a>御用剪贴板管理器・Flicx Clipboard</h2><p>参见 <a href="https://www.csslayer.info/wordpress/fcitx-dev/fcitx-clipboard/" target="_blank" rel="external">Fcitx Clipboard</a>，在其插件的高级设置里可以把 primary text 关掉。作为剪贴板管理器已经足够好用了。</p>
 <blockquote>
 <p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
 </blockquote>
@@ -600,23 +600,23 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
-		
-			<li><a href="/tags/C/">C++<span>2</span></a></li>
-		
-			<li><a href="/tags/Python/">Python<span>2</span></a></li>
-		
 			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
 		
-			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
+			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
 		
-			<li><a href="/tags/公告/">公告<span>1</span></a></li>
+			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
 		
 			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
 		
+			<li><a href="/tags/公告/">公告<span>1</span></a></li>
+		
+			<li><a href="/tags/Python/">Python<span>2</span></a></li>
+		
 			<li><a href="/tags/技术/">技术<span>9</span></a></li>
 		
-			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
+			<li><a href="/tags/C/">C++<span>2</span></a></li>
+		
+			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
 		
 		 
 		</ul>
