@@ -103,6 +103,42 @@
 	
 	<!-- display as entry -->	
 		<h3 class="title">
+			<div class="date"> 2017 Sep 2 </div>
+			<div class="article-title"><a href="/using-指示命名空间习惯不好.html" >using 指示命名空间习惯不好</a></div>						
+		</h3>
+	
+
+
+			  <div class="entry">
+  <div class="row">
+	
+	
+		<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr">C++ 新手最常见的错误：<br><br>using namespace std;</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/644719997206458368" target="_blank" rel="external">2015年9月18日</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr"><a href="https://twitter.com/librehat" target="_blank" rel="external">@librehat</a> 污染了全局作用域上的命名空间。</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/644781322360098816" target="_blank" rel="external">2015年9月18日</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr"><a href="https://twitter.com/librehat" target="_blank" rel="external">@librehat</a> std 里面的命名特别多；如果一个 cpp 文件 using 指示了某命名空间，为了一致性，别的 cpp 文件也得 using 指示同一个命名空间，长远来看是灾难；从有限的上下文无法判断某命名是不是标准库或别的命名空间里面的，比如 diff 输出。</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/644801502163243008" target="_blank" rel="external">2015年9月18日</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>如果不禁止 using 指示，那么你在多人项目里，如何判断同一个标识符在由不同工程师编写的源代码里，是否为同一个东西？</p>
+<p>如果大家保持一致性，即某些命名空间都要 using 指示出来，别的不 using 指示。然而，又如何规定哪些要指示哪些不用指示？害得大家束手束脚地保持一致，规定也众口难调地麻烦；对个人项目也是一样的道理，如果开发者随心所欲地在这里不 using 指示 std, 却又在那边 using 指示它，从长远来看维护将是灾难。</p>
+<p>最后，你能保证将来永远不会取消对某命名空间的 using 指示吗？否则你得给这被 using 指示的命名空间里所有用到的标识符一一加上命名空间作用域前缀，你想象一下怎么弄吧，你有办法自动化处理且绝不出错吗？</p>
+<p>对我来说，与其大费周章地划出可以被 using 指示的命名空间，还不如一劳永逸地用奥卡姆柴刀砍掉 using 指示用法，也省了我在 tweets 里列举的种种缺点。</p>
+<p>我写 C++ 时，爱把迭代器对象直接声明为 iterator 并拿来用，也很清楚 vector 是一个「向量」对象或别的什么，反正不会是 std::vector 那种容器，我放心我舒服。你呢？</p>
+
+	
+	</div>
+</div>
+
+           
+		
+           
+			  
+	
+	<!-- display as entry -->	
+		<h3 class="title">
 			<div class="date"> 2017 Aug 31 </div>
 			<div class="article-title"><a href="/代码，编码，编程，规范和风格.html" >代码，编码，编程，规范和风格</a></div>						
 		</h3>
@@ -381,36 +417,6 @@
 
            
 		
-           
-			  
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017 Jan 16 </div>
-			<div class="article-title"><a href="/知乎乱象.html" >知乎乱象</a></div>						
-		</h3>
-	
-
-
-			  <div class="entry">
-  <div class="row">
-	
-	
-		<p>用知乎久了，我总结出三个乱象，此外我开始戒知乎了。</p>
-<h2 id="反对加没有帮助"><a href="#反对加没有帮助" class="headerlink" title="反对加没有帮助"></a>反对加没有帮助</h2><p>官方对「没有帮助」按钮有本末倒置的解释：「没有帮助」表示该答案对你没有价值。在我看来，每一个对题的答案自然是要解决「问题」。若读者认为这答案能解答问题，赞同即可，反之则反对；若答案本身不对题，自然则是没有帮助了。于是答案只能处于这三种状态之其一，不可共存两种以上状态。</p>
-<p>可是居然有读者习惯反对加没有帮助，有时还要特意跑去评论宣言这行为一番，即不认为这答案能解决问题，又不对题。于是这导致了可悲的现象——<strong>大部分人不关心问题，只想解决他所偏好所厌恶</strong>，说难听点就是要斗臭他所厌恶的答案。如果是我的话，<strong>我当然只会关注我所偏好的问题，再挑有在解答问题的好答案</strong>，而不是如此本末倒置。</p>
-<h2 id="讲故事大赛"><a href="#讲故事大赛" class="headerlink" title="讲故事大赛"></a>讲故事大赛</h2><p><a href="https://www.zhihu.com/question/53659576/answer/136629850" target="_blank" rel="external">当校内已经出现校园暴力事件时，学校应该采取怎样的行动才能将伤害降至最低？</a>下面有一堆答主自顾自地讲述自己所遭遇的校园暴力故事，博取同情，于是前四个答案愣是答不对题还高票。类似的现象已经发生很多次了，说到底有不少用户喜欢把问题变成讲故事大赛，<strong>一些答主讲故事爽了，一些读者听听他所偏好的故事爽了，终究不关心怎么解决问题。</strong>再结合「反对加没有帮助」现象来看就特别喜感，一部分人所「赞同」或「反对加没有帮助」的答案，竟然都没有在解答问题。于是校园暴力恐怕一如既往地大行其道，毕竟没多少人解答怎么解决或赞同解决办法。</p>
-<h2 id="利益相关"><a href="#利益相关" class="headerlink" title="利益相关"></a>利益相关</h2><p>我每次凡是看到答案声明「利益相关」且后缀往往是身份时，我就往往跳过去不看了。<strong>因为这些答案往往把问题扭曲且坍缩成如此狭隘的二元问题，即「你和答主是否属于同一种共同利益群体」</strong>，这自然已经脱离了原问题的初衷了，且答案自然要么为是要么为非。于是当问题下的答案普遍发表利益相关声明，那么问题就很容易变成站队大战，<strong>且那些和读者利益无关的答案自然没有解答原问题。</strong>我没兴趣知道也不想拘泥于答案的答主身份，一个问题下的好答案应该是多元化的，都和答主或读者的身份没有关系。若用户关心在某问题，那么这问题下的好答案应该无关乎利益群体身份，而是认认真真地在解决问题。</p>
-<blockquote>
-<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
-</blockquote>
-
-	
-	</div>
-</div>
-
-           
-		
 
 		</div>
 
@@ -459,23 +465,23 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Python/">Python<span>2</span></a></li>
-		
-			<li><a href="/tags/技术/">技术<span>9</span></a></li>
+			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
 		
 			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
 		
-			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
-		
-			<li><a href="/tags/公告/">公告<span>1</span></a></li>
-		
-			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
-		
-			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
+			<li><a href="/tags/技术/">技术<span>9</span></a></li>
 		
 			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
 		
+			<li><a href="/tags/公告/">公告<span>1</span></a></li>
+		
 			<li><a href="/tags/C/">C++<span>2</span></a></li>
+		
+			<li><a href="/tags/Python/">Python<span>2</span></a></li>
+		
+			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
+		
+			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -495,7 +501,7 @@
   </div>
   <div class="container-narrow">
   <footer> <p>
-  &copy; 2018 Isaac Ge
+  &copy; 2019 Isaac Ge
   
       with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
 </p> </footer>

@@ -141,9 +141,38 @@
 		
             
 		
+            
+		
         
         <!-- render other articles -->
         
+           
+			  
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2019 Feb 24 </div>
+			<div class="article-title"><a href="/来，友情地交换-contact-吧！.html" >来，友情地交换 contact 吧！</a></div>						
+		</h3>
+	
+
+
+			  <div class="entry">
+  <div class="row">
+	
+	
+		<p>如果你看到我发给你的这篇博文，这意味着你应该是用 non-86 手机号注册的 Telegram 用户，而我需要和你聊天，我请求你和我交换 contact。因为 Telegram 有个限制，用 86 手机号注册的用户无法单方面先向用 non-86 手机号注册的用户发消息，除非后者主动向前者发下消息，这限制才会解除，然而是暂时性的，如果彼此之间有很长时间没有互动的话，又会重新有这限制。我就是 86 用户，被这限制烦恼很久了。</p>
+<p>不过其实还有一劳永逸的解决办法，就是 share contact。如果你愿意 share contact，在手机客户端里打开和我的聊天框，点右上角（大概），然后 share contact 即可。出于礼貌，我也会向你 share 我的 contact，然后你点击显示着手机号的消息，add contact 即可，这样我就成为你的 contact 了。contact 就如同字面上的意思吧，你的 Telegram 储存着你的 contacts，且里面的人哪怕修改了 ID 或手机号，他依然会在你的 contacts（大概？）。</p>
+<p>当然，你拒绝也没关系，不用做任何回应，我以后也不会在 Telegram 上找你聊天了。</p>
+<p>我是分割上下文的文字版简陋分割线。</p>
+<p>如果我通过私人联系渠道，比如推特，邮箱，个人博客留言板等，发给你网址从而你一个人看到该博文的话，那我确实是再请求你 share contact。反之则不是，比如通过 RSS 读到本博文的读者并不是我的请求对象，所以不要误会了。</p>
+
+	
+	</div>
+</div>
+
+           
+		
            
 			  
 	
@@ -531,42 +560,6 @@
 
            
 		
-           
-			  
-	
-	<!-- display as entry -->	
-		<h3 class="title">
-			<div class="date"> 2017 Sep 2 </div>
-			<div class="article-title"><a href="/using-指示命名空间习惯不好.html" >using 指示命名空间习惯不好</a></div>						
-		</h3>
-	
-
-
-			  <div class="entry">
-  <div class="row">
-	
-	
-		<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr">C++ 新手最常见的错误：<br><br>using namespace std;</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/644719997206458368" target="_blank" rel="external">2015年9月18日</a></blockquote></p>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr"><a href="https://twitter.com/librehat" target="_blank" rel="external">@librehat</a> 污染了全局作用域上的命名空间。</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/644781322360098816" target="_blank" rel="external">2015年9月18日</a></blockquote></p>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p><blockquote class="twitter-tweet" data-lang="zh-cn"><p lang="zh" dir="ltr"><a href="https://twitter.com/librehat" target="_blank" rel="external">@librehat</a> std 里面的命名特别多；如果一个 cpp 文件 using 指示了某命名空间，为了一致性，别的 cpp 文件也得 using 指示同一个命名空间，长远来看是灾难；从有限的上下文无法判断某命名是不是标准库或别的命名空间里面的，比如 diff 输出。</p>&mdash; 御宅暴君 (@acgtyrant) <a href="https://twitter.com/acgtyrant/status/644801502163243008" target="_blank" rel="external">2015年9月18日</a></blockquote></p>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p>如果不禁止 using 指示，那么你在多人项目里，如何判断同一个标识符在由不同工程师编写的源代码里，是否为同一个东西？</p>
-<p>如果大家保持一致性，即某些命名空间都要 using 指示出来，别的不 using 指示。然而，又如何规定哪些要指示哪些不用指示？害得大家束手束脚地保持一致，规定也众口难调地麻烦；对个人项目也是一样的道理，如果开发者随心所欲地在这里不 using 指示 std, 却又在那边 using 指示它，从长远来看维护将是灾难。</p>
-<p>最后，你能保证将来永远不会取消对某命名空间的 using 指示吗？否则你得给这被 using 指示的命名空间里所有用到的标识符一一加上命名空间作用域前缀，你想象一下怎么弄吧，你有办法自动化处理且绝不出错吗？</p>
-<p>对我来说，与其大费周章地划出可以被 using 指示的命名空间，还不如一劳永逸地用奥卡姆柴刀砍掉 using 指示用法，也省了我在 tweets 里列举的种种缺点。</p>
-<p>我写 C++ 时，爱把迭代器对象直接声明为 iterator 并拿来用，也很清楚 vector 是一个「向量」对象或别的什么，反正不会是 std::vector 那种容器，我放心我舒服。你呢？</p>
-
-	
-	</div>
-</div>
-
-           
-		
 
 		</div>
 
@@ -615,23 +608,23 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
+			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
+		
+			<li><a href="/tags/Python/">Python<span>2</span></a></li>
+		
+			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
+		
+			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
 		
 			<li><a href="/tags/技术/">技术<span>9</span></a></li>
 		
 			<li><a href="/tags/编程规范/">编程规范<span>4</span></a></li>
 		
-			<li><a href="/tags/批判性思维/">批判性思维<span>4</span></a></li>
-		
 			<li><a href="/tags/公告/">公告<span>1</span></a></li>
 		
 			<li><a href="/tags/C/">C++<span>2</span></a></li>
 		
-			<li><a href="/tags/深度学习/">深度学习<span>1</span></a></li>
-		
-			<li><a href="/tags/Python/">Python<span>2</span></a></li>
-		
-			<li><a href="/tags/价值观取向/">价值观取向<span>9</span></a></li>
+			<li><a href="/tags/Linux/">Linux<span>2</span></a></li>
 		
 		 
 		</ul>
@@ -651,7 +644,7 @@
   </div>
   <div class="container-narrow">
   <footer> <p>
-  &copy; 2018 Isaac Ge
+  &copy; 2019 Isaac Ge
   
       with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
 </p> </footer>
